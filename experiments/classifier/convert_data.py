@@ -21,31 +21,39 @@ from collecting our own data with real timestamps. For now we will assume that
 the time between each data point is consistent.
 '''
 
-'''
-    data_subset: Activity, (TimeStamp, TimeStamp), FolderPath -> [[TODO:]]
 
-    Given an activity, time range and path to the folder data,
-    produces an nested array with all of the relevant data given
-    the parameters passed.
-'''
-def data_subset(activity, time_range, folder):
+def data_subset(activities, time_range, folder):
+    """
+        data_subset: Activity, (TimeStamp, TimeStamp), FolderPath -> [[TODO:]]
+
+        Given an activity, time range and path to the folder data,
+        produces an nested array with all of the relevant data given
+        the parameters passed.
+    """
     data = get_data(folder)
-    
-    arr = np.array([[]])
+
+    processed_arr = list()
     for datapoint in data:
-        if datapoint[4] == activity and time_range[0] <= datapoint[0] <= time_range[1]:
-            # append to arary
+        if (datapoint[4] in activities) & ((time_range[0] <= datapoint[0]) & (datapoint[0] <= time_range[1])):
+            # append to array
+            processed_arr.append(datapoint[1,4])
 
+    arr = np.array(processed_arr)
     arr.transpose()
+    print(arr)
 
 
-'''
-    get_data: Folder -> [[TimeStamp, X, Y, Z, Activity]]
 
-    Given the file path to the folder containing our data.
-    produces an array of arrays with the data for ease of organization.
-'''
 def get_data(folder):
+    """
+        get_data: Folder -> [[TimeStamp, X, Y, Z, Activity]]
+
+        Given the file path to the folder containing our data.
+        produces an array of arrays with the data for ease of organization.
+
+        Assumes that the folder path given contains csv data with rows
+        of the form specified in the return type of the function signature.
+    """
     data = list()
     for name in listdir(folder):
         filename = folder + '/' + name
@@ -54,8 +62,8 @@ def get_data(folder):
             # TODO: do we want this?
             data.append(df)
     
-    return data 
+    return data
 
 
-
-data_subset(1, (0, 2), "./data/1.csv")
+# Test script
+data_subset([1], (0, 2), "./data")
