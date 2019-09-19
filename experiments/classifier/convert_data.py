@@ -34,14 +34,13 @@ def data_subset(activities, time_range, folder):
 
     processed_arr = list()
     for datapoint in data:
-        if (datapoint[4] in activities) & ((time_range[0] <= datapoint[0]) & (datapoint[0] <= time_range[1])):
+        if (datapoint.iloc[4] in activities) and ((time_range[0] <= datapoint.iloc[0]) and (datapoint.iloc[0] <= time_range[1])):
             # append to array
-            processed_arr.append(datapoint[1,4])
+            processed_arr.append(datapoint.iloc[1,4])
 
     arr = np.array(processed_arr)
     arr.transpose()
     print(arr)
-
 
 
 def get_data(folder):
@@ -59,9 +58,7 @@ def get_data(folder):
         filename = folder + '/' + name
         if filename.endswith('.csv'):
             df = read_csv(filename, header=None)
-            # TODO: do we want this?
             data.append(df)
-    
     return data
 
 
