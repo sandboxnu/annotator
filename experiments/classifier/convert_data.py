@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import numpy as np
+import pandas as pd
 from os import listdir
 from pandas import read_csv
 
@@ -31,17 +32,15 @@ def data_subset(activities, time_range, folder):
         the parameters passed.
     """
     data = get_data(folder)
+    processed_arr = np.zeros(shape=(1, 5))
+    for row in data:
+        if (row[0] in activities) and ((time_range[0] <= row[1]) and (row[1] <= time_range[1])):
+            # append to arra
+            print(row)
+            processed_arr = np.vstack([processed_arr,row])
 
-    processed_arr = list()
-    for datapoint in data:
-        if (datapoint.iloc[4] in activities) and ((time_range[0] <= datapoint.iloc[0]) and (datapoint.iloc[0] <= time_range[1])):
-            # append to array
-            processed_arr.append(datapoint.iloc[1,4])
-
-    arr = np.array(processed_arr)
-    arr.transpose()
-    print(arr)
-
+    print(processed_arr)
+    np.savetxt("processed.csv", processed_arr.transpose(), delimiter=",")
 
 def get_data(folder):
     """
@@ -53,14 +52,14 @@ def get_data(folder):
         Assumes that the folder path given contains csv data with rows
         of the form specified in the return type of the function signature.
     """
-    data = list()
+    data = pd.DataFrame()
     for name in listdir(folder):
         filename = folder + '/' + name
         if filename.endswith('.csv'):
             df = read_csv(filename, header=None)
-            data.append(df)
-    return data
+            data = data.append(df)
+    return data.values
 
 
 # Test script
-data_subset([1], (0, 2), "./data")
+data_subset([1], (0, 2000), "./data")
