@@ -22,7 +22,6 @@ from collecting our own data with real timestamps. For now we will assume that
 the time between each data point is consistent.
 '''
 
-
 def data_subset(activities, time_range, folder):
     """
         data_subset: Activity, (TimeStamp, TimeStamp), FolderPath -> [[TODO:]]
@@ -35,12 +34,12 @@ def data_subset(activities, time_range, folder):
     processed_arr = np.zeros(shape=(1, 5))
     for row in data:
         if (row[0] in activities) and ((time_range[0] <= row[1]) and (row[1] <= time_range[1])):
-            # append to arra
-            print(row)
             processed_arr = np.vstack([processed_arr,row])
+    # inneficient: has to reinstantiate array every time
+    # list could be much faster
+    # .tolist())
 
-    print(processed_arr)
-    np.savetxt("processed.csv", processed_arr.transpose(), delimiter=",")
+    np.savetxt("data{0}-{1}.csv".format(activities, time_range).replace(" ", ""), processed_arr.transpose(), '%16.2f', delimiter=",")
 
 def get_data(folder):
     """
