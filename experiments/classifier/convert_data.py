@@ -31,13 +31,14 @@ def get_activity_accelerometer_data(activities, time_range, folder):
 
     data = get_data(folder)
     features = np.zeros(shape=(1, 3))
-    labels = np.zeros(shape=(1, 0))
+    labels = np.zeros(shape=(1, 1))
     feature_names = ['x', 'y', 'z']
 
     for row in data:
-        if((row[0] in activities) and ((time_range[0] <= row[1]) and (row[1] <= time_range[1]))):
+        if((row[4] in activities) and ((time_range[0] <= row[0]) and (row[0] <= time_range[1]))):
             features = np.vstack([features, row[1:4]])
-            np.append(labels, row[4])
+            labels = np.append(labels, row[4])
+
     return activities, labels, feature_names, features
 
 ## DEPRECATED
