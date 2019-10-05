@@ -36,11 +36,8 @@ def get_activity_accelerometer_data(activities, time_range, folder):
 
     for row in data:
         if((row[0] in activities) and ((time_range[0] <= row[1]) and (row[1] <= time_range[1]))):
-            print(row[1:4])
             features = np.vstack([features, row[1:4]])
-            print(row[4])
             np.append(labels, row[4])
-    
     return activities, labels, feature_names, features
 
 ## DEPRECATED
@@ -85,11 +82,11 @@ def get_data(folder):
 
 
 # Test script
-label_names, labels, feature_names, features = get_activity_accelerometer_data([1, 2, 3, 4, 5, 6, 7], (0, 100000), "./data")
+# label_names, labels, feature_names, features = get_activity_accelerometer_data([1, 2, 3, 4, 5, 6, 7], (0, 100000), "./data")
 
-print(label_names)
-print(labels)
-print(feature_names)
-print(features)
+# print(label_names)
+# print(labels)
+# print(feature_names)
+# print(features)
 #data_subset([1], (0, 2000), "./data")
 # np.savetxt("data{0}-{1}.csv".format(activities, time_range).replace(" ", ""), processed_arr.transpose(), '%16.2f', delimiter=",")
