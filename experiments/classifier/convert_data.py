@@ -22,6 +22,28 @@ from collecting our own data with real timestamps. For now we will assume that
 the time between each data point is consistent.
 '''
 
+def get_activity_accelerometer_data(activities, time_range, folder):
+    """
+        sklearn_input: [Activities], TimeInterval -> [Activities], [labels], [feature_names], [features]
+
+        Queries data and converts it to a format palatable for sklearn.
+    """
+
+    data = get_data(folder)
+    features = np.zeros(shape=(1, 3))
+    labels = np.zeros(shape=(1, 0))
+    feature_names = ['x', 'y', 'z']
+
+    for row in data:
+        if((row[0] in activities) and ((time_range[0] <= row[1]) and (row[1] <= time_range[1]))):
+            print(row[1:4])
+            features = np.vstack([features, row[1:4]])
+            print(row[4])
+            np.append(labels, row[4])
+    
+    return activities, labels, feature_names, features
+
+## DEPRECATED
 def data_subset(activities, time_range, folder):
     """
         data_subset: Activity, (TimeStamp, TimeStamp), FolderPath -> [[TODO:]]
@@ -38,8 +60,10 @@ def data_subset(activities, time_range, folder):
     # inneficient: has to reinstantiate array every time
     # list could be much faster
     # .tolist())
-
-    np.savetxt("data{0}-{1}.csv".format(activities, time_range).replace(" ", ""), processed_arr.transpose(), '%16.2f', delimiter=",")
+    print(activities)
+    print(processed_arr)
+    print(time_range)
+    # return activities;
 
 def get_data(folder):
     """
@@ -61,4 +85,11 @@ def get_data(folder):
 
 
 # Test script
-data_subset([1], (0, 2000), "./data")
+label_names, labels, feature_names, features = get_activity_accelerometer_data([1, 2, 3, 4, 5, 6, 7], (0, 100000), "./data")
+
+print(label_names)
+print(labels)
+print(feature_names)
+print(features)
+#data_subset([1], (0, 2000), "./data")
+# np.savetxt("data{0}-{1}.csv".format(activities, time_range).replace(" ", ""), processed_arr.transpose(), '%16.2f', delimiter=",")
