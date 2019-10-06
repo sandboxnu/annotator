@@ -8,9 +8,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,13 +24,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-
-        final Intent intent = new Intent(this, WakeableService.class);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startService(intent);
+        final Intent alarmIntent = new Intent(MainActivity.this, WakeableService.class);
+        ToggleButton toggle = (ToggleButton) findViewById(R.id.fab);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    startService(alarmIntent);
+                    Log.d("Alarm", "Started");
+                } else {
+                    stopService(alarmIntent);
+                    Log.d("Alarm", "Stopped");
+                }
             }
         });
     }
