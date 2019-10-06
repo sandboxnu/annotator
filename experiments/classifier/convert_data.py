@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 from os import listdir
 from pandas import read_csv
+import math 
 
 '''
 An Activity is one of:
@@ -29,13 +30,13 @@ def get_activity_accelerometer_data(activities, time_range, folder):
         Queries data and converts it to a format palatable for sklearn.
     """
 
-    data = get_data(folder)
+    data = get_data(folder).values
     features = np.zeros(shape=(1, 3))
     labels = np.zeros(shape=(1, 1))
     feature_names = ['x', 'y', 'z']
 
     for row in data:
-        if((row[4] in activities) and ((time_range[0] <= row[0]) and (row[0] <= time_range[1]))):
+        if(row[4] in activities) and ((time_range[0] <= row[0]) and (row[0] <= time_range[1])):
             features = np.vstack([features, row[1:4]])
             labels = np.append(labels, row[4])
 
@@ -43,7 +44,8 @@ def get_activity_accelerometer_data(activities, time_range, folder):
 
 ## DEPRECATED
 def data_subset(activities, time_range, folder):
-    """
+    """"a, b, c, d, e ... z,"
+
         data_subset: Activity, (TimeStamp, TimeStamp), FolderPath -> [[TODO:]]
 
         Given an activity, time range and path to the folder data,
@@ -79,10 +81,74 @@ def get_data(folder):
         if filename.endswith('.csv'):
             df = read_csv(filename, header=None)
             data = data.append(df)
-    return data.values
 
+    return data
+
+def get_xyz_data(folder):
+    data = get_data(folder)
+    data.drop(data.columns[[0]], axis = 1, inplace=True)
+    data.columns = ['x', 'y', 'z', 'label']
+    return data
+
+def get_naive_ts_data(folder, num_bins):
+    data = get_data(folder)
+
+    # prepare labels
+    labels = []
+    for i in range(num_bins * 3):
+        mod3 = i % 3
+        labelInd = str(math.floor(i / 3))
+        if(mod3 == 0):
+            labels.append('x' + labelInd)
+        elif(mod3 == 1):
+            labels.append('y' + labelInd)
+        else:
+            labels.append('z' + labelInd)
+    labels.append('label')
+
+    dataTs = pd.DataFrame(columns = labels)
+
+    curLabel = 1
+    curData = []
+    countThrown = 0
+    countLoops = 0
+
+    for row in data.values:
+        countLoops += 1
+        # print(curData)
+        if len(curData) == num_bins*3:
+            # add label to end of data
+            curData.append(curLabel)
+            arr = pd.DataFrame(columns = labels, data = [curData])
+            # append this data to df 
+            dataTs = pd.concat([dataTs, arr])
+
+            # reset with the new row
+            curLabel = row[4]
+            curData = []
+            for val in row[1:4]:
+                curData.append(val)
+
+        elif row[4] != curLabel:
+            countThrown += 1
+
+            # discard old data: not big enough sample
+            # reset the data with new data
+            curLabel = row[4]
+            curData = []
+            for val in row[1:4]:
+                curData.append(val)
+        else:
+            # if no special conditions, append to array
+            # and increment the number of rows
+            for val in row[1:4]:
+                curData.append(val)
+    
+    return dataTs
 
 # Test script
+
+print(get_naive_ts_data("./data", 20))
 # label_names, labels, feature_names, features = get_activity_accelerometer_data([1, 2, 3, 4, 5, 6, 7], (0, 100000), "./data")
 
 # print(label_names)
