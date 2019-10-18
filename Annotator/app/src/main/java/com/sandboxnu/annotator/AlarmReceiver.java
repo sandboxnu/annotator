@@ -8,23 +8,19 @@ import android.content.Intent;
 import android.os.PowerManager;
 import android.util.Log;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 public class AlarmReceiver extends BroadcastReceiver
 {
 
     private boolean isRecording(Context context) {
         MainActivity mainActivity = (MainActivity) context;
-        return ((ToggleButton) mainActivity.findViewById(R.id.fab)).isChecked();
+        //return ((ToggleButton) mainActivity.findViewById(R.id.fab)).isChecked();
+        return true;
     }
+
     @Override
     public void onReceive(Context context, Intent intent)
     {
-
-        if(!isRecording(context)) {
-            return;
-        }
-
         Log.d("Alarm", "ON RECEIVE");
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "app:Wake");
