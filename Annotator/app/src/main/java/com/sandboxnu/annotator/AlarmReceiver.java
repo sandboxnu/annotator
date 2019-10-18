@@ -21,13 +21,11 @@ public class AlarmReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        Log.d("Alarm", "ON RECEIVE");
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "app:Wake");
         wl.acquire();
 
-        Toast.makeText(context, "Alarm !!!!!!!!!!", Toast.LENGTH_LONG).show(); // For example
-        Log.d("Alarm", "HELLLO SIR");
+        Toast.makeText(context, "Asking user for voice input...", Toast.LENGTH_LONG).show();
 
         Intent intent1 = new Intent(context, AlarmReceiver.class);
         final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 100, intent1, 0);
@@ -39,7 +37,7 @@ public class AlarmReceiver extends BroadcastReceiver
 
     public void setAlarm(Context context)
     {
-
+        Toast.makeText(context, "Recording", Toast.LENGTH_LONG).show();
         AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, AlarmReceiver.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
@@ -48,9 +46,10 @@ public class AlarmReceiver extends BroadcastReceiver
 
     public void cancelAlarm(Context context)
     {
+        Toast.makeText(context, "Pausing", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(context, AlarmReceiver.class);
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
+        final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 100, intent, 0);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(sender);
+        alarmManager.cancel(pendingIntent);
     }
 }
