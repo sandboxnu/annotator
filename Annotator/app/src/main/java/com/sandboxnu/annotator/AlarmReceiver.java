@@ -11,12 +11,7 @@ import android.widget.Toast;
 
 public class AlarmReceiver extends BroadcastReceiver
 {
-
-    private boolean isRecording(Context context) {
-        MainActivity mainActivity = (MainActivity) context;
-        //return ((ToggleButton) mainActivity.findViewById(R.id.fab)).isChecked();
-        return true;
-    }
+    static long INTERVAL = 5000;
 
     @Override
     public void onReceive(Context context, Intent intent)
@@ -30,7 +25,7 @@ public class AlarmReceiver extends BroadcastReceiver
         Intent intent1 = new Intent(context, AlarmReceiver.class);
         final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 100, intent1, 0);
         final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + INTERVAL, pendingIntent);
 
         wl.release();
     }
