@@ -1,0 +1,20 @@
+{
+  "name": "aws-lambda-code",
+  "version": "1.0.0",
+  "description": "Backend AWS Lambda code to receive .csv files and log the data collected to a server.",
+  "main": "//TODO",
+  "scripts": {
+    "test": "//TODO"
+  },
+  "keywords": [
+    "lambda",
+    "aws",
+    "annotator"
+  ],
+  "author": "Jacob Chvatal for SandboxNU",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "aws-sdk": "^2.556.0",
+    "event-stream": "^4.0.1"
+  }
+}
