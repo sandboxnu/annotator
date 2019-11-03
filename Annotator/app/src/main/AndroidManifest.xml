@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".VoiceActivity"></activity>
         <service android:name=".WakeableService" />
         <service android:name=".RepeatingService" />
         <receiver  android:process=":remote" android:name=".AlarmReceiver"></receiver>

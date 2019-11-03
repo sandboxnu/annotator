@@ -25,8 +25,10 @@ public class RepeatingService extends Service
             @Override
             public void run() {
                 generateTone();
+                listenForVoice();
+
                 Log.d("RepeatingService", "running!");
-                mHandler.postDelayed(this, 2000);
+                mHandler.postDelayed(this, 10000);
             }
         };
 
@@ -56,5 +58,11 @@ public class RepeatingService extends Service
         ToneGenerator beep = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
         beep.startTone(ToneGenerator.TONE_CDMA_PIP,200);
         beep.release();
+    }
+
+    private void listenForVoice() {
+        Intent dialogIntent = new Intent(this, VoiceActivity.class);
+        dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(dialogIntent);
     }
 }
