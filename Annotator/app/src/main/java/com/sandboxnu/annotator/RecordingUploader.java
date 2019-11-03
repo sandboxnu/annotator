@@ -25,21 +25,9 @@ import android.widget.Toast;
 import com.jcraft.jsch.*;
 
 // used for aes
-import java.io.UnsupportedEncodingException;
-import java.nio.Buffer;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
 import java.security.Key;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
@@ -49,19 +37,41 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
 import com.jcraft.jsch.ChannelSftp;
 
-import javax.crypto.SecretKeyFactory;
+// necessary for accessing AWS services
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+
 
 /**
  * Represents a function object (with helpers) to handle the uploading of the data recorded.
+ * Typical usage is 'RecordingUploader.uploadAll()' to upload all of the stored CSV files.
+ * In the future, this will require some path to the default destination for the files.
  */
 public class RecordingUploader {
 
+    // necessary for HTTP
     private String UPLOAD_ENDPOINT = "";
+
+    // necessary for SFTP
     private String SFTPHOST = "host:IP";
     private int SFTPPORT = 22;
     private String SFTPUSER = "username";
     private String SFTPPASS = "password";
     private String SFTPWORKINGDIR = "file/to/transfer";
+
+    // necessary for AWS S3
+    private String BUCKET_NAME = "";
+    private Regions S3_REGION = Regions.US_EAST_1;
+
+
+    private AWSCredentials S3_CREDENTIALS = new BasicAWSCredentials(
+            "<AWS accesskey>",
+            "<AWS secretkey>"
+    );
 
 
     public void uploadAll() {
@@ -91,8 +101,55 @@ public class RecordingUploader {
         }catch(Exception e) {
             // TODO: catch exception in gui
             // throw new IllegalAccessException("Unable to access the files in the directory.");
+            e.printStackTrace();
         }
     }
+
+    /**
+     * Uploads a single file to the S3 bucket.
+     * @param file the file to be uploaded.
+     */
+    private void uploadFileS3(File file) {
+        // instantiate a connection to the s3 client
+        AmazonS3 s3client = AmazonS3ClientBuilder
+                .standard()
+                .withCredentials(new AWSStaticCredentialsProvider(S3_CREDENTIALS))
+                .withRegion(S3_REGION)
+                .build();
+
+        // add an object to the client
+        s3client.putObject(
+                BUCKET_NAME,
+                file.getAbsolutePath(),
+                file
+        );
+    }
+
+    /**
+     * Upload a series of files to an S3 bucket.
+     * Better than uploading a single file, as it requires only a single S3 connection.
+     * @param files the files to upload to S3.
+     */
+    private void uploadFilesS3(File[] files) {
+
+        // initialize the S3 client with the bucket and credentials
+        AmazonS3 s3client = AmazonS3ClientBuilder
+                .standard()
+                .withCredentials(new AWSStaticCredentialsProvider(S3_CREDENTIALS))
+                .withRegion(S3_REGION)
+                .build();
+
+        // there may be a way to upload multiple objects at once to S3
+        for(File file : files) {
+            // put an object to s3 with the information
+            s3client.putObject(
+                    BUCKET_NAME,
+                    file.getAbsolutePath(),
+                    file
+            );
+        }
+    }
+
 
     /**
      * Encrypts a file and returns its encrypted contents.
@@ -100,6 +157,7 @@ public class RecordingUploader {
      * @return the contents of the File, encrypted.
      */
     private String encryptFileString(File file) {
+        // decodes the decrypted file into a byte array which is writeable
         byte[] contents = Base64.encodeBase64(this.encryptFileBytes(file));
         if(contents != null) {
             return new String(contents);
@@ -122,9 +180,11 @@ public class RecordingUploader {
 
                 boolean success = file.createNewFile();
 
+                // ensues that the file was properly deleted and created
                 if (!success || !deleteSuccess) {
                     throw new IllegalAccessException("Cannot access file!");
                 } else {
+                    // writes to the file via an output stream
                     FileOutputStream outputStream = new FileOutputStream(file);
 
                     outputStream.write(Base64.decodeBase64(contents));
@@ -132,7 +192,6 @@ public class RecordingUploader {
                     return file;
                 }
             } catch (Exception e) {
-                // TODO: throw exception
                 e.printStackTrace();
             }
         }
@@ -152,11 +211,13 @@ public class RecordingUploader {
             String keyValue = "abc";
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 
-            KeySpec spec = new PBEKeySpec(keyValue.toCharArray(), Hex.decodeHex("dc0da04af8fee58593442bf834b30739"), 5);
+            KeySpec spec = new PBEKeySpec(keyValue.toCharArray(),
+                    Hex.decodeHex("dc0da04af8fee58593442bf834b30739"), 5);
 
             Key key = new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
             Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            c.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(Hex.decodeHex("dc0da04af8fee58593442bf834b30739")));
+            c.init(Cipher.ENCRYPT_MODE, key,
+                    new IvParameterSpec(Hex.decodeHex("dc0da04af8fee58593442bf834b30739")));
 
             // read in file as String
             String fileString = this.parseFile(file);
@@ -188,15 +249,6 @@ public class RecordingUploader {
      */
     private String parseFile(File file) {
          try {
-             /*
-             FileInputStream fis = new FileInputStream(file);
-
-            byte[] data = new byte[(int) file.length()];
-            fis.read(data);
-            fis.close();
-
-            return new String(data, "UTF-8");*/
-
              InputStream inputStream = new FileInputStream(file);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -223,6 +275,7 @@ public class RecordingUploader {
          } catch(Exception e) {
              // TODO: handle this exception instead of using dummy things
              // throw new IllegalAccessException("The file cannot be read.");
+             e.printStackTrace();
              return "";
          }
     }
@@ -304,14 +357,13 @@ public class RecordingUploader {
             channelSftp = (ChannelSftp) channel;
             channelSftp.cd(SFTPWORKINGDIR);
 
-            // TODO: consider naming or renaming the file in a different fashion
             // for logging purposes.
             for(File file : files) {
                 channelSftp.put(new FileInputStream(file), file.getName());
             }
 
         } catch(Exception e) {
-            // TODO: something when this fails
+            e.printStackTrace();
         } finally {
             try {
                 channelSftp.exit();
@@ -323,6 +375,10 @@ public class RecordingUploader {
         }
     }
 
+    /**
+     * Sends an HTTP POST request with the provided file to an Amazon Lambda function.
+     * @param file the file to be POSTed.
+     */
     private void uploadFileHTTP(File file) {
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
