@@ -16,10 +16,19 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.jcraft.jsch.*;
+
+import com.jcraft.jsch.ChannelSftp;
 
 public class RecordingUploader {
 
     private String UPLOAD_ENDPOINT = "";
+    private String SFTPHOST = "host:IP";
+    private int SFTPPORT = 22;
+    private String SFTPUSER = "username";
+    private String SFTPPASS = "password";
+    private String SFTPWORKINGDIR = "file/to/transfer";
+
 
     public void uploadAll() {
         try {
@@ -33,8 +42,9 @@ public class RecordingUploader {
 
             } else {
                 for(File file :  listOfFiles) {
+                    // TODO: is this encrypted step necessary with SFTP?
                     File encrypted = this.encryptFile(file);
-                    this.uploadFile(encrypted);
+                    this.uploadFileSFTP(encrypted);
                     this.removeFile(encrypted);
                 }
             }
@@ -68,6 +78,10 @@ public class RecordingUploader {
         return file;
     }
 
+    /**
+     * Removes the given file from the device.
+     * @param file the file to be removed.
+     */
     private void removeFile(File file) {
         boolean success = file.delete();
         // TODO: assert that the file removal was a success in another way
@@ -88,12 +102,100 @@ public class RecordingUploader {
 
             return new String(data, "UTF-8");
          } catch(Exception e) {
-             // TODO: catch this exception
+             // TODO: handle this exception instead of using dummy things
              // throw new IllegalAccessException("The file cannot be read.");
+             return "";
          }
     }
 
-    private void uploadFile(File file) {
+    /**
+     * Uploads the file to an SFTP server.
+     * @param file the file to be uploaded.
+     */
+    private void uploadFileSFTP(File file) {
+        Session session = null;
+        Channel channel = null;
+        ChannelSftp channelSftp = null;
+
+        try {
+            // create session with login information
+            JSch jsch = new JSch();
+            session = jsch.getSession(SFTPUSER, SFTPHOST, SFTPPORT);
+            session.setPassword(SFTPPASS);
+
+            // open channel
+            java.util.Properties config = new java.util.Properties();
+            config.put("StrictHostKeyChecking", "No");
+            session.setConfig(config);
+            session.connect();
+
+            // connect with sftp
+            channel = session.openChannel("sftp");
+            channel.connect();
+
+            channelSftp = (ChannelSftp) channel;
+            channelSftp.cd(SFTPWORKINGDIR);
+
+            // TODO: consider naming or renaming the file in a different fashion
+            // for logging purposes.
+            channelSftp.put(new FileInputStream(file), file.getName());
+
+        } catch(Exception e) {
+            // TODO: something when this fails
+        } finally {
+            channelSftp.exit();
+            channel.disconnect();
+            session.disconnect();
+        }
+    }
+
+    /**
+     * Uploads all of the given files to S3 using SFTP.
+     * Unlike the other method, which makes one SFTP connection per file,
+     * this one should make one SFTP connection per batch of files which
+     * is very much preferred.
+     * @param files the files to be transferred.
+     */
+    private void uploadFilesSFTP(File[] files) {
+        Session session = null;
+        Channel channel = null;
+        ChannelSftp channelSftp = null;
+
+        try {
+            // create session with login information
+            JSch jsch = new JSch();
+            session = jsch.getSession(SFTPUSER, SFTPHOST, SFTPPORT);
+            session.setPassword(SFTPPASS);
+
+            // open channel
+            java.util.Properties config = new java.util.Properties();
+            config.put("StrictHostKeyChecking", "No");
+            session.setConfig(config);
+            session.connect();
+
+            // connect with sftp
+            channel = session.openChannel("sftp");
+            channel.connect();
+
+            channelSftp = (ChannelSftp) channel;
+            channelSftp.cd(SFTPWORKINGDIR);
+
+            // TODO: consider naming or renaming the file in a different fashion
+            // for logging purposes.
+            for(File file : files) {
+                channelSftp.put(new FileInputStream(file), file.getName());
+            }
+
+        } catch(Exception e) {
+            // TODO: something when this fails
+        } finally {
+            channelSftp.exit();
+            channel.disconnect();
+            session.disconnect();
+        }
+    }
+
+    private void uploadFileHTTP(File file) {
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         String lineEnd = "\r\n";
@@ -104,6 +206,8 @@ public class RecordingUploader {
         int maxBufferSize = 1 * 1024 * 1024;
 
         try {
+
+            // TODO: not sure what is going on here. would like to touch base during the meeting.
             FileInputStream fileInputStream = new FileInputStream(file);
             URL url = new URL(UPLOAD_ENDPOINT);
 
