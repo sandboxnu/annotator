@@ -1,8 +1,12 @@
 package com.sandboxnu.annotator;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,9 +20,36 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+// used for sftp
 import com.jcraft.jsch.*;
 
+// used for aes
+import java.io.UnsupportedEncodingException;
+import java.nio.Buffer;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
 import com.jcraft.jsch.ChannelSftp;
+
+import javax.crypto.SecretKeyFactory;
 
 public class RecordingUploader {
 
@@ -32,20 +63,25 @@ public class RecordingUploader {
 
     public void uploadAll() {
         try {
-            // TODO: this is bad practice, remove later
+            // TODO: this is bad practice, remove once we know file path
             java.io.File test = new java.io.File("test.txt");
             File folder = test.getParentFile();
-            File[] listOfFiles = folder.listFiles();
+            // delete the test file right away as it is used to find the directory
+            // test.delete();
 
-            if(listOfFiles == null) {
-                // TODO: produce a warning or error here.
+            if(folder != null) {
+                File[] listOfFiles = folder.listFiles();
 
-            } else {
-                for(File file :  listOfFiles) {
-                    // TODO: is this encrypted step necessary with SFTP?
-                    File encrypted = this.encryptFile(file);
-                    this.uploadFileSFTP(encrypted);
-                    this.removeFile(encrypted);
+                if (listOfFiles == null) {
+                    // TODO: produce a warning or error here.
+                    throw new IllegalArgumentException("There are no files to send.");
+                } else {
+                    for (File file : listOfFiles) {
+                        // TODO: is this encrypted step necessary with SFTP?
+                        File encrypted = this.encryptFile(file);
+                        this.uploadFileSFTP(encrypted);
+                        this.removeFile(encrypted);
+                    }
                 }
             }
 
@@ -61,11 +97,12 @@ public class RecordingUploader {
      * @return the contents of the File, encrypted.
      */
     private String encryptFileString(File file) {
-        String fileStr = this.parseFile(file);
-        String pub_key = "";
-
-        return "";
-        // TODO: is this necessary?
+        byte[] contents = Base64.encodeBase64(this.encryptFileBytes(file));
+        if(contents != null) {
+            return new String(contents);
+        } else {
+            throw new IllegalArgumentException("The file could not be parsed.");
+        }
     }
 
     /**
@@ -74,8 +111,60 @@ public class RecordingUploader {
      * @return the newly encrypted File.
      */
     private File encryptFile(File file) {
-        // TODO: this method
-        return file;
+        if (file.exists()) {
+            try {
+
+                String contents = this.encryptFileString(file);
+                boolean deleteSuccess = file.delete();
+
+                boolean success = file.createNewFile();
+
+                if (!success || !deleteSuccess) {
+                    throw new IllegalAccessException("Cannot access file!");
+                } else {
+                    FileOutputStream outputStream = new FileOutputStream(file);
+
+                    outputStream.write(Base64.decodeBase64(contents));
+
+                    return file;
+                }
+            } catch (Exception e) {
+                // TODO: throw exception
+                e.printStackTrace();
+            }
+        }
+
+        // TODO: this is bad = the file should always be non-null
+        // find a way to throw exceptions here and handle them displayed to the user
+        return null;
+    }
+
+    /**
+     * Encrypts a file with AES.
+     * @param file the file to be encrypted.
+     * @return a byte array containing the encrypted file.
+     */
+    private byte[] encryptFileBytes(File file) {
+        try {
+            String keyValue = "abc";
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+
+            KeySpec spec = new PBEKeySpec(keyValue.toCharArray(), Hex.decodeHex("dc0da04af8fee58593442bf834b30739"), 5);
+
+            Key key = new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
+            Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            c.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(Hex.decodeHex("dc0da04af8fee58593442bf834b30739")));
+
+            // read in file as String
+            String fileString = this.parseFile(file);
+
+            // finally encrypt everything
+            return c.doFinal(fileString.getBytes());
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        return null;
     }
 
     /**
@@ -85,22 +174,49 @@ public class RecordingUploader {
     private void removeFile(File file) {
         boolean success = file.delete();
         // TODO: assert that the file removal was a success in another way
-        assert success;
+        if(!success) {
+            throw new IllegalArgumentException("The file could not be deleted.");
+        }
     }
 
     /**
-     * Parses the given file into its String represeentation.
+     * Parses the given file into its String representation.
      * @return the String representation of the encrypted file.
      */
     private String parseFile(File file) {
          try {
+             /*
              FileInputStream fis = new FileInputStream(file);
 
             byte[] data = new byte[(int) file.length()];
             fis.read(data);
             fis.close();
 
-            return new String(data, "UTF-8");
+            return new String(data, "UTF-8");*/
+
+             InputStream inputStream = new FileInputStream(file);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+             StringBuilder stringBuilder = new StringBuilder();
+
+             boolean done = false;
+
+             // reads lines from the file one by one while they are not null
+             // unsure if this implementation or the one above is more efficient
+             while(!done) {
+                 String line = reader.readLine();
+                 done = (line == null);
+
+                 if (line != null) {
+                     stringBuilder.append(line);
+                 }
+             }
+
+             reader.close();
+             inputStream.close();
+
+             return stringBuilder.toString();
+
          } catch(Exception e) {
              // TODO: handle this exception instead of using dummy things
              // throw new IllegalAccessException("The file cannot be read.");
@@ -144,9 +260,13 @@ public class RecordingUploader {
             // TODO: something when this fails, pref. throw our own exception
             // which displays an informative error for the user.
         } finally {
-            channelSftp.exit();
-            channel.disconnect();
-            session.disconnect();
+            try {
+                channelSftp.exit();
+                channel.disconnect();
+                session.disconnect();
+            } catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -190,9 +310,13 @@ public class RecordingUploader {
         } catch(Exception e) {
             // TODO: something when this fails
         } finally {
-            channelSftp.exit();
-            channel.disconnect();
-            session.disconnect();
+            try {
+                channelSftp.exit();
+                channel.disconnect();
+                session.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -204,7 +328,7 @@ public class RecordingUploader {
         String boundary = "*****";
         int bytesRead, bytesAvailable, bufferSize;
         byte[] buffer;
-        int maxBufferSize = 1 * 1024 * 1024;
+        int maxBufferSize = 1024 * 1024;
 
         try {
 
@@ -213,7 +337,7 @@ public class RecordingUploader {
             URL url = new URL(UPLOAD_ENDPOINT);
 
             String fileName = file.getName();
-            String uploaded_file = fileName;
+            String uploaded_file = fileName + "";
 
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoInput(true); // Allow Inputs
@@ -234,7 +358,7 @@ public class RecordingUploader {
                     dos.writeBytes(lineEnd);
         }
         catch(Exception e) {
-
+            e.printStackTrace();
         }
     }
 
