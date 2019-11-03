@@ -5,6 +5,9 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.ToneGenerator;
 import android.os.PowerManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,18 +19,22 @@ public class AlarmReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "app:Wake");
-        wl.acquire();
-
+        Log.d("alarm", "wake up!");
+        int tries = 0;
+        while(tries < 5) {
+            try {
+                generateTone();
+                break;
+            } catch(RuntimeException e) {
+                tries ++;
+            }
+        }
         Toast.makeText(context, "Asking user for voice input...", Toast.LENGTH_LONG).show();
 
         Intent intent1 = new Intent(context, AlarmReceiver.class);
         final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 100, intent1, 0);
         final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + INTERVAL, pendingIntent);
-
-        wl.release();
     }
 
     public void setAlarm(Context context)
@@ -46,5 +53,11 @@ public class AlarmReceiver extends BroadcastReceiver
         final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 100, intent, 0);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);
+    }
+
+    private void generateTone() {
+        ToneGenerator beep = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+        beep.startTone(ToneGenerator.TONE_CDMA_PIP,200);
+        beep.release();
     }
 }

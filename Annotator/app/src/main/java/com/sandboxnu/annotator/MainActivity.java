@@ -11,6 +11,7 @@ import com.sandboxnu.annotator.activitylogger.ActivityLoggerImpl;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,17 +38,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        final Intent alarmIntent = new Intent(MainActivity.this, WakeableService.class);
+        PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
+        final PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "app:Wake");
+       // final Intent alarmIntent = new Intent(MainActivity.this, WakeableService.class);
+        final Intent alarmIntent = new Intent(MainActivity.this, RepeatingService.class);
         ToggleButton toggle = findViewById(R.id.fab);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     startService(alarmIntent);
                     Log.d("Alarm", "Started");
+                    wl.acquire();
                 } else {
                     stopService(alarmIntent);
                     Log.d("Alarm", "Stopped");
+                    wl.release();
                 }
             }
         });
