@@ -141,7 +141,8 @@ public class RecordingUploader {
             channelSftp.put(new FileInputStream(file), file.getName());
 
         } catch(Exception e) {
-            // TODO: something when this fails
+            // TODO: something when this fails, pref. throw our own exception
+            // which displays an informative error for the user.
         } finally {
             channelSftp.exit();
             channel.disconnect();
@@ -211,6 +212,9 @@ public class RecordingUploader {
             FileInputStream fileInputStream = new FileInputStream(file);
             URL url = new URL(UPLOAD_ENDPOINT);
 
+            String fileName = file.getName();
+            String uploaded_file = fileName;
+
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoInput(true); // Allow Inputs
             conn.setDoOutput(true); // Allow Outputs
@@ -224,7 +228,7 @@ public class RecordingUploader {
             dos = new DataOutputStream(conn.getOutputStream());
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name="uploaded_file";filename=""
+            dos.writeBytes("Content-Disposition: form-data; name=" + uploaded_file + ";filename="
                             + fileName + "" + lineEnd);
 
                     dos.writeBytes(lineEnd);
