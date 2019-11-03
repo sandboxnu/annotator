@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <service android:name=".WakeableService" />
+        <service android:name=".RepeatingService" />
         <receiver  android:process=":remote" android:name=".AlarmReceiver"></receiver>
     </application>
 
