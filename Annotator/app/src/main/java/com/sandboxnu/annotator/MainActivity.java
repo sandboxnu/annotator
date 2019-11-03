@@ -1,5 +1,6 @@
 package com.sandboxnu.annotator;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.SensorManager;
@@ -21,9 +22,11 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.ToggleButton;
+import android.speech.RecognizerIntent;
 
 
 import java.io.File;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private static Context context;
