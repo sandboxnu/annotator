@@ -51,6 +51,9 @@ import com.jcraft.jsch.ChannelSftp;
 
 import javax.crypto.SecretKeyFactory;
 
+/**
+ * Represents a function object (with helpers) to handle the uploading of the data recorded.
+ */
 public class RecordingUploader {
 
     private String UPLOAD_ENDPOINT = "";
