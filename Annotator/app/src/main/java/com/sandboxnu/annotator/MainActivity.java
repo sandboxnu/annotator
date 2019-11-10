@@ -57,27 +57,20 @@ public class MainActivity extends AppCompatActivity {
 
         PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
         final PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "app:Wake");
-       // final Intent alarmIntent = new Intent(MainActivity.this, WakeableService.class);
-        final Intent alarmIntent = new Intent(MainActivity.this, RepeatingService.class);
+        final Intent repeatingServiceIntent = new Intent(MainActivity.this, RepeatingService.class);
 
 
-        final SpeechRecognizer speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        speechRecognizer.setRecognitionListener(new VoiceRecognitionListener());
 
         ToggleButton toggle = findViewById(R.id.fab);
 
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
-                    intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
-                    intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"com.sandboxnu.annotator");
-                    speechRecognizer.startListening(intent);
+                    startService(repeatingServiceIntent);
                     Log.d("Alarm", "Started");
                     wl.acquire();
                 } else {
-                    stopService(alarmIntent);
+                    stopService(repeatingServiceIntent);
                     Log.d("Alarm", "Stopped");
                     wl.release();
                 }
