@@ -7,6 +7,8 @@ import android.media.ToneGenerator;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,8 +17,12 @@ public class RepeatingService extends Service
     PowerManager.WakeLock screenLock;
     Handler mHandler;
     Runnable runnable;
+    SpeechRecognizer speechRecognizer;
     public void onCreate()
     {
+
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        speechRecognizer.setRecognitionListener(new VoiceRecognitionListener());
         screenLock = ((PowerManager)getSystemService(POWER_SERVICE)).newWakeLock(
                 PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "annotator:keepRunning");
         screenLock.acquire();
@@ -25,9 +31,9 @@ public class RepeatingService extends Service
             @Override
             public void run() {
                 generateTone();
+                Log.d("VoiceRecognition", "Listening!");
                 listenForVoice();
 
-                Log.d("RepeatingService", "running!");
                 mHandler.postDelayed(this, 10000);
             }
         };
@@ -61,8 +67,10 @@ public class RepeatingService extends Service
     }
 
     private void listenForVoice() {
-        Intent dialogIntent = new Intent(this, VoiceActivity.class);
-        dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(dialogIntent);
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
+        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"com.sandboxnu.annotator");
+        speechRecognizer.startListening(intent);
     }
 }
