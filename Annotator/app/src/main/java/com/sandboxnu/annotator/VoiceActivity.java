@@ -18,6 +18,7 @@ public class VoiceActivity extends AppCompatActivity {
     private TextView voiceInput;
     private TextView speakButton;
     private final int REQ_CODE_SPEECH_INPUT = 100;
+    public static String message = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,13 @@ public class VoiceActivity extends AppCompatActivity {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     for (String str: result){
-                        Log.d("Voice", str);
+                        // str: voice-to-text data
+                       // Log.d("Voice", str);
+                        VoiceActivity.message = str;
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("message", str);
+                        startActivity(intent);
+
                     }
                 }
                 break;

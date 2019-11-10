@@ -33,9 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        MainActivity.context = getApplicationContext();
-        ActivityLogger mainLogger = new ActivityLoggerImpl((SensorManager) getSystemService(SENSOR_SERVICE), context);
-        mainLogger.startLogFile();
+        Log.i("messageReceived",  VoiceActivity.message);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -74,12 +73,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_listview, fileNames);
         recordingsView.setAdapter(arrayAdapter);
 
-        Button upload = findViewById(R.id.upload);
-        upload.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                new RecordingUploader(ref).uploadAll(recordingsFolder);
-            }
-        });
+//        Intent intent = getIntent();
+//        String str = intent.getStringExtra("message");
     }
 
     @Override
