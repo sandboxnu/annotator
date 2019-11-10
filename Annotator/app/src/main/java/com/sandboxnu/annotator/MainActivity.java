@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("messageReceived",  VoiceActivity.message);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -61,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         ListView recordingsView = findViewById(R.id.recordings);
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_listview, fileNames);
         recordingsView.setAdapter(arrayAdapter);
+
+//        Intent intent = getIntent();
+//        String str = intent.getStringExtra("message");
     }
 
     @Override
