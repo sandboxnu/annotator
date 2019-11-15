@@ -22,7 +22,7 @@ public class RepeatingService extends Service
     {
 
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        speechRecognizer.setRecognitionListener(new VoiceRecognitionListener());
+        speechRecognizer.setRecognitionListener(new VoiceRecognitionListener(new ListenForVoice()));
         screenLock = ((PowerManager)getSystemService(POWER_SERVICE)).newWakeLock(
                 PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "annotator:keepRunning");
         screenLock.acquire();
@@ -72,5 +72,11 @@ public class RepeatingService extends Service
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"com.sandboxnu.annotator");
         speechRecognizer.startListening(intent);
+    }
+
+    class ListenForVoice {
+        void apply() {
+            RepeatingService.this.listenForVoice();
+        }
     }
 }
