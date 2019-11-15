@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".VoiceActivity"></activity>
         <service android:name=".WakeableService" />
-        <service android:name=".RepeatingService" />
+        <service android:name=".RepeatingService" android:enabled="true" android:exported="false" android:process=":RepeatingService"/>
         <receiver  android:process=":remote" android:name=".AlarmReceiver"></receiver>
     </application>
 
