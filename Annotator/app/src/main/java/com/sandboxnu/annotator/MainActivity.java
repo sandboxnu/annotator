@@ -32,11 +32,16 @@ import android.speech.RecognizerIntent;
 
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import java.util.List;
+
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    private static Context context;
-
+    public static List<String> dataSet = new ArrayList<String>(Arrays.asList("walking", "talking",
+            "eating", "running"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
