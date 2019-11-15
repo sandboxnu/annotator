@@ -54,9 +54,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Log.d("restart", "activity");
-
-        PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
-        final PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "app:Wake");
         final Intent repeatingServiceIntent = new Intent(MainActivity.this, RepeatingService.class);
 
 
@@ -66,13 +63,12 @@ public class MainActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
+
                     startService(repeatingServiceIntent);
                     Log.d("Alarm", "Started");
-                    wl.acquire();
                 } else {
                     stopService(repeatingServiceIntent);
                     Log.d("Alarm", "Stopped");
-                    wl.release();
                 }
             }
         });

@@ -1,6 +1,7 @@
 package com.sandboxnu.annotator;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -14,18 +15,20 @@ import android.widget.Toast;
 
 public class RepeatingService extends Service
 {
-    PowerManager.WakeLock screenLock;
+    PowerManager powerManager;
+    PowerManager.WakeLock wakeLock;
     Handler mHandler;
     Runnable runnable;
     SpeechRecognizer speechRecognizer;
+    static int delay = 10000;
     public void onCreate()
     {
 
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         speechRecognizer.setRecognitionListener(new VoiceRecognitionListener());
-        screenLock = ((PowerManager)getSystemService(POWER_SERVICE)).newWakeLock(
-                PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "annotator:keepRunning");
-        screenLock.acquire();
+        powerManager = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Annotator:Lock");
+        wakeLock.acquire();
         mHandler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -34,7 +37,7 @@ public class RepeatingService extends Service
                 Log.d("VoiceRecognition", "Listening!");
                 listenForVoice();
 
-                mHandler.postDelayed(this, 10000);
+                mHandler.postDelayed(this, delay);
             }
         };
 
@@ -50,7 +53,8 @@ public class RepeatingService extends Service
 
     @Override
     public void onDestroy() {
-        screenLock.release();
+        speechRecognizer.destroy();
+        wakeLock.release();
         mHandler.removeCallbacks(runnable);
         super.onDestroy();
     }
