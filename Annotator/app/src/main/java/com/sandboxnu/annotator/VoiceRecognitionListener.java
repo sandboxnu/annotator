@@ -2,11 +2,13 @@ package com.sandboxnu.annotator;
 
 import android.os.Bundle;
 import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.Voice;
 import android.util.Log;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +66,10 @@ public class VoiceRecognitionListener implements RecognitionListener {
         {
             str += data.get(i);
         }
+        // gets the confidence scores
+        float[] confidence = results.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
         // filter the str
-        String result = this.speechResult(this.data);
+        String result = this.speechResult(this.data, confidence);
         Log.d("VoiceRecognition", "result: " + str);
         Log.d("VoiceRecognition", "filter result: " + result);
 
@@ -78,18 +82,30 @@ public class VoiceRecognitionListener implements RecognitionListener {
      * returns the first one that match (for now)
      * @param array
      */
-    private String speechResult(List<String> array) {
+    private String speechResult(List<String> array, float[] confidence) {
         // if string not found, call listen for voice again
         while(!hasValidInput(array)) {
             func.apply();
         }
-        // return first match
-        for(String s: array) {
-            if(MainActivity.dataSet.contains(s)) {
-                return s;
+
+        // filters the results to just the ones in the dictionary
+        // of the matches, we return the result that yields the highest confidence
+        // level
+        double maxConfidence = 0.0;
+        int maxIndex = 0;
+        for (int i = 0; i < array.size(); i++) {
+            // if in dictionary
+            if(MainActivity.dataSet.contains(array.get(i))) {
+                // if greater confidence
+                if (confidence[i] > maxConfidence) {
+                    maxConfidence = confidence[i];
+                    maxIndex = i;
+                }
+
             }
         }
-        return "";
+
+        return array.get(maxIndex) + "with the confidence level of: " + maxConfidence;
     }
 
     private boolean hasValidInput(List<String> array) {

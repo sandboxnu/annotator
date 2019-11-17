@@ -57,6 +57,7 @@ public class VoiceActivity extends AppCompatActivity {
 
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
                     for (String str: result){
                         // str: voice-to-text data
                        // Log.d("Voice", str);
