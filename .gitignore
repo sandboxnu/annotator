@@ -1,4 +1,5 @@
+.idea
+*/.gradle
+Annotator/local.properties
 node_modules/
-package-lock.json
-.idea/
 lib/

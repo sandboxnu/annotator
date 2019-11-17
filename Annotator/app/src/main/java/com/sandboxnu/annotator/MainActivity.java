@@ -1,15 +1,17 @@
 package com.sandboxnu.annotator;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sandboxnu.annotator.activitylogger.ActivityLogger;
+import com.sandboxnu.annotator.activitylogger.ActivityLoggerImpl;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -22,9 +24,13 @@ import android.widget.ToggleButton;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MainActivity.context = getApplicationContext();
+        ActivityLogger mainLogger = new ActivityLoggerImpl((SensorManager) getSystemService(SENSOR_SERVICE), context);
+        mainLogger.startLogFile();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
