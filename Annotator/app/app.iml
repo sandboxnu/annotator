@@ -130,7 +130,7 @@
     <orderEntry type="library" name="Gradle: com.amazonaws:aws-android-sdk-appsync:2.8.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.amazonaws:aws-android-sdk-mobile-client:2.13.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.amazonaws:aws-android-sdk-auth-userpools:2.13.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.amazonaws:aws-android-sdk-auth-core:2.13.2@aar" level="project" />]
+    <orderEntry type="library" name="Gradle: com.amazonaws:aws-android-sdk-auth-core:2.13.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.material:material:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.0.0@aar" level="project" />
