@@ -15,9 +15,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.ToggleButton;
+
 
 import java.io.File;
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         final Intent alarmIntent = new Intent(MainActivity.this, WakeableService.class);
         ToggleButton toggle = findViewById(R.id.fab);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -48,15 +51,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        File recordingsFolder = this.getFilesDir();
+        final File recordingsFolder = this.getFilesDir();
         File[] recordings = recordingsFolder.listFiles();
         String[] fileNames = new String[recordings.length];
+
         for(int i=0; i<recordings.length; i++) {
             fileNames[i] = recordings[i].getName();
         }
+
+        final MainActivity ref = this;
+
         ListView recordingsView = findViewById(R.id.recordings);
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_listview, fileNames);
         recordingsView.setAdapter(arrayAdapter);
+
+        Button upload = findViewById(R.id.upload);
+        upload.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                new RecordingUploader(ref).uploadAll(recordingsFolder);
+            }
+        });
     }
 
     @Override
@@ -81,3 +95,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

@@ -1,3 +1,5 @@
 .idea
 */.gradle
 Annotator/local.properties
+node_modules/
+lib/

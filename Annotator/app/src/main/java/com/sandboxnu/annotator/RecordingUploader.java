@@ -1,14 +1,22 @@
 package com.sandboxnu.annotator;
 
+import java.io.BufferedReader;
+import java.io.Console;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
+import android.security.keystore.KeyGenParameterSpec;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,50 +24,437 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RecordingUploader {
+// used for sftp
+import com.amazonaws.mobileconnectors.s3.transfermanager.Transfer;
+import com.jcraft.jsch.*;
 
-    String UPLOAD_ENDPOINT = "";
+// used for aes
+import java.security.Key;
+import java.security.spec.KeySpec;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 
-    public void uploadAll() {
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
+import com.jcraft.jsch.ChannelSftp;
 
+// necessary for accessing AWS services
+//import software.amazon.awssdk.auth.credentials.AwsSessionCredentials;
+//import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+//import software.amazon.awssdk.regions.*;
+//import software.amazon.awssdk.services.s3.*;
+//import software.amazon.awssdk.services.s3.model.S3Object;
+import com.amazonaws.auth.BasicSessionCredentials;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+/**
+ * Represents a function object (with helpers) to handle the uploading of the data recorded.
+ * Typical usage is 'RecordingUploader.uploadAll()' to upload all of the stored CSV files.
+ * In the future, this will require some path to the default destination for the files.
+ */
+class RecordingUploader {
+
+    MainActivity app;
+
+    public RecordingUploader(MainActivity app) {
+        this.app = app;
     }
-/*
-    private void uploadFile(File file) {
-        HttpURLConnection conn = null;
-        DataOutputStream dos = null;
-        String lineEnd = "\r\n";
-        String twoHyphens = "--";
-        String boundary = "*****";
-        int bytesRead, bytesAvailable, bufferSize;
-        byte[] buffer;
-        int maxBufferSize = 1 * 1024 * 1024;
 
+    private final AmazonS3 s3Client = new AmazonS3Client(
+            new BasicSessionCredentials(
+                    BuildConfig.AWS_PUB,
+                    BuildConfig.AWS_SECRET, "token??"
+            )
+    );
 
+    public void uploadAll(File folder) {
+        System.out.println("Uploading files to S3...");
         try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            URL url = new URL(UPLOAD_ENDPOINT);
+            java.io.File test = new java.io.File(this.app.getFilesDir().getAbsolutePath(), "file.txt");
+            FileOutputStream fOut = new FileOutputStream(test);
+            OutputStreamWriter outputWriter=new OutputStreamWriter(fOut);
+            outputWriter.write("Test Document");
+            outputWriter.close();
 
-            conn = (HttpURLConnection) url.openConnection();
-            conn.setDoInput(true); // Allow Inputs
-            conn.setDoOutput(true); // Allow Outputs
-            conn.setUseCaches(false); // Don't use a Cached Copy
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Connection", "Keep-Alive");
-            conn.setRequestProperty("ENCTYPE", "multipart/form-data");
-            conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-            conn.setRequestProperty("uploaded_file", fileName);
+            System.out.println("Printing file " + test.getAbsolutePath());
 
-            dos = new DataOutputStream(conn.getOutputStream());
+            if(folder != null) {
+                File[] listOfFiles = folder.listFiles();
+                if (listOfFiles == null) {
+                    System.out.println("Found no files.");
+                    throw new IllegalArgumentException("There are no files to send.");
+                } else {
+                    System.out.println("Found files to upload to the bucket.");
+                    for(File file : listOfFiles) {
+                        System.out.println(file.getAbsolutePath());
+                    }
+                    uploadFilesS3(listOfFiles);
+                }
+            }
 
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name="uploaded_file";filename=""
-                            + fileName + """ + lineEnd);
-
-                    dos.writeBytes(lineEnd);
+        } catch(Exception e) {
+            // TODO: catch exception in gui
+            // throw new IllegalAccessException("Unable to access the files in the directory.");
+            e.printStackTrace();
         }
-        catch(Exception e) {
+    }
 
+    /**
+     * Removes the given file from the device.
+     * @param file the file to be removed.
+     */
+    private static void removeFile(File file) {
+        boolean success = file.delete();
+        // TODO: assert that the file removal was a success in another way
+        if(!success) {
+            throw new IllegalArgumentException("The file could not be deleted.");
         }
-    }*/
+    }
 
+
+    /**
+     * Upload a series of files to an S3 bucket.
+     * Better than uploading a single file, as it requires only a single S3 connection.
+     * @param files the files to upload to S3.
+     */
+    private void uploadFilesS3(File[] files) {
+
+        // initialize the S3 client with the bucket and credentials
+        TransferUtility tfUtility = new TransferUtility(this.s3Client, app);
+
+        System.out.println("Possibly uploading files...");
+
+        // there may be a way to upload multiple objects at once to S3
+        for(File file : files) {
+            System.out.println("Found file " + file.getName());
+            // put an object to s3 with the information
+            TransferObserver tfObserver = tfUtility.upload(
+                    BuildConfig.BUCKET_NAME,
+                    BuildConfig.BUCKET_NAME + "/" + file.getName(),
+                    file,
+                    CannedAccessControlList.PublicRead);
+
+            tfObserver.setTransferListener(new TransferListener() {
+                @Override
+                public void onStateChanged(int id, TransferState state) {
+                    System.out.println(state);
+                }
+
+                @Override
+                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+
+                }
+
+                @Override
+                public void onError(int id, Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
+            System.out.println("successful upload of file");
+
+            removeFile(file);
+        }
+    }
+
+
+//    /**
+//     * Uploads a single file to the S3 bucket.
+//     * @param file the file to be uploaded.
+//     */
+//    private static void uploadFileS3(File file) {
+//        // instantiate a connection to the s3 client
+//        AmazonS3 s3client = AmazonS3ClientBuilder
+//                .standard()
+//                .withCredentials(new AWSStaticCredentialsProvider(S3_CREDENTIALS))
+//                .withRegion(S3_REGION)
+//                .build();
+//
+//        // add an object to the client
+//        s3client.putObject(
+//                BuildConfig.BUCKET_NAME,
+//                file.getAbsolutePath(),
+//                file
+//        );
+//    }
+
+//    /**
+//     * Encrypts a file and returns its encrypted contents.
+//     * @param file the File to be encrypted.
+//     * @return the contents of the File, encrypted.
+//     */
+//    private String encryptFileString(File file) {
+//        // decodes the decrypted file into a byte array which is writeable
+//        byte[] contents = Base64.encodeBase64(this.encryptFileBytes(file));
+//        if(contents != null) {
+//            return new String(contents);
+//        } else {
+//            throw new IllegalArgumentException("The file could not be parsed.");
+//        }
+//    }
+
+//    /**
+//     * Replaces a file with an encrypted copy.
+//     * @param file the File to be encrypted.
+//     * @return the newly encrypted File.
+//     */
+//    private File encryptFile(File file) {
+//        if (file.exists()) {
+//            try {
+//
+//                String contents = this.encryptFileString(file);
+//                boolean deleteSuccess = file.delete();
+//
+//                boolean success = file.createNewFile();
+//
+//                // ensues that the file was properly deleted and created
+//                if (!success || !deleteSuccess) {
+//                    throw new IllegalAccessException("Cannot access file!");
+//                } else {
+//                    // writes to the file via an output stream
+//                    FileOutputStream outputStream = new FileOutputStream(file);
+//
+//                    outputStream.write(Base64.decodeBase64(contents));
+//
+//                    return file;
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        // TODO: this is bad = the file should always be non-null
+//        // find a way to throw exceptions here and handle them displayed to the user
+//        return null;
+//    }
+//
+//    /**
+//     * Encrypts a file with AES.
+//     * @param file the file to be encrypted.
+//     * @return a byte array containing the encrypted file.
+//     */
+//    private byte[] encryptFileBytes(File file) {
+//        try {
+//            String keyValue = "abc";
+//            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+//
+//            KeySpec spec = new PBEKeySpec(keyValue.toCharArray(),
+//                    Hex.decodeHex("dc0da04af8fee58593442bf834b30739"), 5);
+//
+//            Key key = new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
+//            Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+//            c.init(Cipher.ENCRYPT_MODE, key,
+//                    new IvParameterSpec(Hex.decodeHex("dc0da04af8fee58593442bf834b30739")));
+//
+//            // read in file as String
+//            String fileString = this.parseFile(file);
+//
+//            // finally encrypt everything
+//            return c.doFinal(fileString.getBytes());
+//        } catch (Exception e) {
+//            // TODO: handle exception
+//        }
+//
+//        return null;
+//    }
+
+//
+//    /**
+//     * Parses the given file into its String representation.
+//     * @return the String representation of the encrypted file.
+//     */
+//    private String parseFile(File file) {
+//         try {
+//             InputStream inputStream = new FileInputStream(file);
+//             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+//
+//             StringBuilder stringBuilder = new StringBuilder();
+//
+//             boolean done = false;
+//
+//             // reads lines from the file one by one while they are not null
+//             // unsure if this implementation or the one above is more efficient
+//             while(!done) {
+//                 String line = reader.readLine();
+//                 done = (line == null);
+//
+//                 if (line != null) {
+//                     stringBuilder.append(line);
+//                 }
+//             }
+//
+//             reader.close();
+//             inputStream.close();
+//
+//             return stringBuilder.toString();
+//
+//         } catch(Exception e) {
+//             // TODO: handle this exception instead of using dummy things
+//             // throw new IllegalAccessException("The file cannot be read.");
+//             e.printStackTrace();
+//             return "";
+//         }
+//    }
+//
+//    /**
+//     * Uploads the file to an SFTP server.
+//     * @param file the file to be uploaded.
+//     */
+//    private static void uploadFileSFTP(File file) {
+//        Session session = null;
+//        Channel channel = null;
+//        ChannelSftp channelSftp = null;
+//
+//        try {
+//            // create session with login information
+//            JSch jsch = new JSch();
+//            session = jsch.getSession(SFTPUSER, SFTPHOST, SFTPPORT);
+//            session.setPassword(SFTPPASS);
+//
+//            // open channel
+//            java.util.Properties config = new java.util.Properties();
+//            config.put("StrictHostKeyChecking", "No");
+//            session.setConfig(config);
+//            session.connect();
+//
+//            // connect with sftp
+//            channel = session.openChannel("sftp");
+//            channel.connect();
+//
+//            channelSftp = (ChannelSftp) channel;
+//            channelSftp.cd(SFTPWORKINGDIR);
+//
+//            // TODO: consider naming or renaming the file in a different fashion
+//            // for logging purposes.
+//            channelSftp.put(new FileInputStream(file), file.getName());
+//
+//        } catch(Exception e) {
+//            // TODO: something when this fails, pref. throw our own exception
+//            // which displays an informative error for the user.
+//        } finally {
+//            try {
+//                channelSftp.exit();
+//                channel.disconnect();
+//                session.disconnect();
+//            } catch(Exception e){
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    /**
+//     * Uploads all of the given files to S3 using SFTP.
+//     * Unlike the other method, which makes one SFTP connection per file,
+//     * this one should make one SFTP connection per batch of files which
+//     * is very much preferred.
+//     * @param files the files to be transferred.
+//     */
+//    private void uploadFilesSFTP(File[] files) {
+//        Session session = null;
+//        Channel channel = null;
+//        ChannelSftp channelSftp = null;
+//
+//        try {
+//            // create session with login information
+//            JSch jsch = new JSch();
+//            session = jsch.getSession(SFTPUSER, SFTPHOST, SFTPPORT);
+//            session.setPassword(SFTPPASS);
+//
+//            // open channel
+//            java.util.Properties config = new java.util.Properties();
+//            config.put("StrictHostKeyChecking", "No");
+//            session.setConfig(config);
+//            session.connect();
+//
+//            // connect with sftp
+//            channel = session.openChannel("sftp");
+//            channel.connect();
+//
+//            channelSftp = (ChannelSftp) channel;
+//            channelSftp.cd(SFTPWORKINGDIR);
+//
+//            // for logging purposes.
+//            for(File file : files) {
+//                channelSftp.put(new FileInputStream(file), file.getName());
+//            }
+//
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                channelSftp.exit();
+//                channel.disconnect();
+//                session.disconnect();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    /**
+//     * Sends an HTTP POST request with the provided file to an Amazon Lambda function.
+//     * @param file the file to be POSTed.
+//     */
+//    private void uploadFileHTTP(File file) {
+//        HttpURLConnection conn = null;
+//        DataOutputStream dos = null;
+//        String lineEnd = "\r\n";
+//        String twoHyphens = "--";
+//        String boundary = "*****";
+//        int bytesRead, bytesAvailable, bufferSize;
+//        byte[] buffer;
+//        int maxBufferSize = 1024 * 1024;
+//
+//        try {
+//
+//            // TODO: not sure what is going on here. would like to touch base during the meeting.
+//            FileInputStream fileInputStream = new FileInputStream(file);
+//            URL url = new URL(UPLOAD_ENDPOINT);
+//
+//            String fileName = file.getName();
+//            String uploaded_file = fileName + "";
+//
+//            conn = (HttpURLConnection) url.openConnection();
+//            conn.setDoInput(true); // Allow Inputs
+//            conn.setDoOutput(true); // Allow Outputs
+//            conn.setUseCaches(false); // Don't use a Cached Copy
+//            conn.setRequestMethod("POST");
+//            conn.setRequestProperty("Connection", "Keep-Alive");
+//            conn.setRequestProperty("ENCTYPE", "multipart/form-data");
+//            conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+//            conn.setRequestProperty("uploaded_file", fileName);
+//
+//            dos = new DataOutputStream(conn.getOutputStream());
+//
+//            dos.writeBytes(twoHyphens + boundary + lineEnd);
+//            dos.writeBytes("Content-Disposition: form-data; name=" + uploaded_file + ";filename="
+//                            + fileName + "" + lineEnd);
+//
+//                    dos.writeBytes(lineEnd);
+//        }
+//        catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
 }
