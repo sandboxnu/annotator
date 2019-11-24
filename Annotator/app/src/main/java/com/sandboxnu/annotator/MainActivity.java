@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
 import com.sandboxnu.annotator.activitylogger.ActivityLogger;
 import com.sandboxnu.annotator.activitylogger.ActivityLoggerImpl;
 
@@ -24,19 +25,26 @@ import android.widget.ToggleButton;
 
 import java.io.File;
 
+/**
+ * The main class for the Annotator application.
+ */
 public class MainActivity extends AppCompatActivity {
-    private static Context context;
+
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        MainActivity.context = getApplicationContext();
+
+        this.context = getApplicationContext();
+
         ActivityLogger mainLogger = new ActivityLoggerImpl((SensorManager) getSystemService(SENSOR_SERVICE), context);
         mainLogger.startLogFile();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         final Intent alarmIntent = new Intent(MainActivity.this, WakeableService.class);
         ToggleButton toggle = findViewById(R.id.fab);
@@ -66,10 +74,19 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_listview, fileNames);
         recordingsView.setAdapter(arrayAdapter);
 
+        // add the aws mobile client!
+        AWSMobileClient.getInstance().initialize(this).execute();
+
+        // create the upload button, and upload files to s3 when it is clicked
         Button upload = findViewById(R.id.upload);
+
+        // add a listener to the upload button to upload files
         upload.setOnClickListener(new View.OnClickListener() {
+            // uploader
+            RecordingUploader uploader = new RecordingUploader(ref);
+            // onclick action to upload all of the local files
             public void onClick(View v) {
-                new RecordingUploader(ref).uploadAll(recordingsFolder);
+                this.uploader.uploadAll();
             }
         });
     }
