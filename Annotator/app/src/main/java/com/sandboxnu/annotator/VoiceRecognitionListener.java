@@ -35,6 +35,8 @@ public class VoiceRecognitionListener implements RecognitionListener {
     }
 
 
+
+
     @Override
     public void onReadyForSpeech(Bundle params) {
         Log.d("VoiceRecognition", "ready for speech");
@@ -86,10 +88,9 @@ public class VoiceRecognitionListener implements RecognitionListener {
      * given a list of strings, returns a single string that exist
      * in our pre-existing list of inputs;
      * returns the first one that match (for now)
-     *
      * @param array
      */
-    private String speechResult(List<String> array, float[] confidence) {
+    public String speechResult(List<String> array, float[] confidence) {
         // if string not found, call listen for voice again
         while (!hasValidInput(array)) {
             func.apply();

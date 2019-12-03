@@ -26,9 +26,9 @@ public class RepeatingService extends Service
 
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         speechRecognizer.setRecognitionListener(new VoiceRecognitionListener(new ListenForVoice()));
-       // screenLock = ((PowerManager)getSystemService(POWER_SERVICE)).newWakeLock(
-       //         PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "annotator:keepRunning");
-       // screenLock.acquire();
+        powerManager = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Annotator:Lock");
+        wakeLock.acquire();
         mHandler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -78,9 +78,9 @@ public class RepeatingService extends Service
         speechRecognizer.startListening(intent);
     }
 
-    class ListenForVoice {
+    public static class ListenForVoice {
         void apply() {
-            RepeatingService.this.listenForVoice();
+            new RepeatingService().listenForVoice();
         }
     }
 }

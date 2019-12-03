@@ -7,8 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import com.sandboxnu.annotator.activitylogger.ActivityLogger;
-import com.sandboxnu.annotator.activitylogger.ActivityLoggerImpl;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,17 +18,15 @@ import android.os.PowerManager;
 import android.speech.RecognitionListener;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.speech.RecognizerIntent;
-
 
 import java.io.File;
 import java.util.ArrayList;
@@ -82,16 +79,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final File recordingsFolder = this.getFilesDir();
+        File recordingsFolder = this.getFilesDir();
         File[] recordings = recordingsFolder.listFiles();
         String[] fileNames = new String[recordings.length];
-
         for(int i=0; i<recordings.length; i++) {
             fileNames[i] = recordings[i].getName();
         }
-
-        final MainActivity ref = this;
-
         ListView recordingsView = findViewById(R.id.recordings);
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_listview, fileNames);
         recordingsView.setAdapter(arrayAdapter);
@@ -122,4 +115,3 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-

@@ -12,7 +12,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -59,6 +61,69 @@ public class ExampleUnitTest {
         String date = dateFormat.format(new Date());
         assertEquals("GOODBYE\n",
                 readFile(home+"/Downloads/" + date + ".txt"));
+
+    }
+
+    @Test
+    public void testSpeechResultHighestConfidence() throws IOException{
+        List<String> list = new ArrayList<>();
+        list.add("eating");
+        list.add("swimming");
+        list.add("walking");
+        list.add("sleeping");
+        float[] arr = new float[4];
+        arr[0] = 0.991f;
+        arr[1] = 0.897f;
+        arr[2] = 0.564f;
+        arr[3] = 0.209f;
+
+        assertEquals("eating with a confidence level of 0.991",
+                new VoiceRecognitionListener(new RepeatingService.ListenForVoice()).speechResult(list,arr));
+        String home = System.getProperty("user.home");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        String date = dateFormat.format(new Date());
+        assertEquals("eating\n",
+                readFile(home+"/Downloads/" + date + ".txt"));
+
+    }
+
+    @Test
+    public void testSpeechResultMustBeDataSet() throws IOException{
+        List<String> list = new ArrayList<>();
+        list.add("swimming");
+        list.add("swim");
+        list.add("eating");
+        list.add("walking");
+        float[] arr = new float[4];
+        arr[0] = 0.809f;
+        arr[1] = 0.997f;
+        arr[2] = 0.564f;
+        arr[3] = 0.209f;
+
+        assertEquals("swimming with a confidence level of 0.809",
+                new VoiceRecognitionListener(new RepeatingService.ListenForVoice()).speechResult(list,arr));
+        String home = System.getProperty("user.home");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        String date = dateFormat.format(new Date());
+        assertEquals("swimming\n",
+                readFile(home+"/Downloads/" + date + ".txt"));
+
+    }
+
+    //  Method putExtra in android.content.Intent not mocked so fails and throws exception
+    @Test (expected = RuntimeException.class)
+    public void testSpeechResultListenAgain(){
+        List<String> list = new ArrayList<>();
+        list.add("dis");
+        list.add("dat");
+        list.add("eh");
+        list.add("woot");
+        float[] arr = new float[4];
+        arr[0] = 0.809f;
+        arr[1] = 0.997f;
+        arr[2] = 0.564f;
+        arr[3] = 0.209f;
+        new VoiceRecognitionListener(new RepeatingService.ListenForVoice()).speechResult(list,arr);
 
     }
 
