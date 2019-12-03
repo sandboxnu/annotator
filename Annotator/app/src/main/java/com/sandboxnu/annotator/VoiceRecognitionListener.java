@@ -7,10 +7,16 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.Voice;
 import android.util.Log;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class VoiceRecognitionListener implements RecognitionListener {
@@ -20,6 +26,7 @@ public class VoiceRecognitionListener implements RecognitionListener {
     /**
      * A constructor that takes in a function object ListenForVoice that will listen for voice
      * when applied
+     *
      * @param func - the function object
      */
 
@@ -61,9 +68,8 @@ public class VoiceRecognitionListener implements RecognitionListener {
     @Override
     public void onResults(Bundle results) {
         String str = new String();
-         this.data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        for (int i = 0; i < data.size(); i++)
-        {
+        this.data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+        for (int i = 0; i < data.size(); i++) {
             str += data.get(i);
         }
         // gets the confidence scores
@@ -80,11 +86,12 @@ public class VoiceRecognitionListener implements RecognitionListener {
      * given a list of strings, returns a single string that exist
      * in our pre-existing list of inputs;
      * returns the first one that match (for now)
+     *
      * @param array
      */
     private String speechResult(List<String> array, float[] confidence) {
         // if string not found, call listen for voice again
-        while(!hasValidInput(array)) {
+        while (!hasValidInput(array)) {
             func.apply();
         }
 
@@ -95,7 +102,7 @@ public class VoiceRecognitionListener implements RecognitionListener {
         int maxIndex = 0;
         for (int i = 0; i < array.size(); i++) {
             // if in dictionary
-            if(MainActivity.dataSet.contains(array.get(i))) {
+            if (MainActivity.dataSet.contains(array.get(i))) {
                 // if greater confidence
                 if (confidence[i] > maxConfidence) {
                     maxConfidence = confidence[i];
@@ -105,12 +112,39 @@ public class VoiceRecognitionListener implements RecognitionListener {
             }
         }
 
+        save(array.get(maxIndex));
         return array.get(maxIndex) + "with the confidence level of: " + maxConfidence;
     }
 
+    // saves the label to file
+    public static void save(String label) {
+        // file name is time stamp, content = label
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        String date = dateFormat.format(new Date());
+
+        String home = System.getProperty("user.home");
+        File file = new File(home+"/Downloads/" + date + ".txt");
+
+        if (file.exists() && file.isFile()) {
+            System.out.println("This file already exists.");
+            return;
+        } else {
+            PrintWriter printWriter = null;
+            try {
+                printWriter = new PrintWriter(file);
+            } catch (FileNotFoundException fne) {
+                System.out.println("file not found or could not be created!");
+            }
+
+            printWriter.append(label);
+            printWriter.close();
+        }
+        System.out.println("Saved!");
+    }
+
     private boolean hasValidInput(List<String> array) {
-        for(String s: array) {
-            if(MainActivity.dataSet.contains(s)) {
+        for (String s : array) {
+            if (MainActivity.dataSet.contains(s)) {
                 return true;
             }
         }

@@ -7,61 +7,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45518d34-c1ff-4f5e-a1e6-0bedbf30b8fe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/bin/python3" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/bin/python3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/bin/python3.7" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/bin/python3.7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/include/python3.7m" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/include/python3.7m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/__future__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/__future__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/_bootlocale.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/_bootlocale.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/_collections_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/_collections_abc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/_dummy_thread.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/_dummy_thread.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/_weakrefset.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/_weakrefset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/abc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/base64.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/base64.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/bisect.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/bisect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/codecs.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/codecs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/collections" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/collections" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/config-3.7m-x86_64-linux-gnu" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/config-3.7m-x86_64-linux-gnu" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/copy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/copy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/copyreg.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/copyreg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/encodings" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/encodings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/enum.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/enum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/fnmatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/fnmatch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/functools.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/functools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/genericpath.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/genericpath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/hashlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/hashlib.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/heapq.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/heapq.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/hmac.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/hmac.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/imp.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/imp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/importlib" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/importlib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/io.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/io.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/keyword.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/keyword.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/lib-dynload" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/lib-dynload" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/linecache.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/linecache.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/locale.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/locale.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/ntpath.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/ntpath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/operator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/operator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/os.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/os.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/posixpath.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/posixpath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/random.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/random.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/re.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/re.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/reprlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/reprlib.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/rlcompleter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/rlcompleter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/shutil.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/shutil.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/sre_compile.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/sre_compile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/sre_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/sre_constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/sre_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/sre_parse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/stat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/stat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/struct.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/struct.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/tarfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/tarfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/tempfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/tempfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/token.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/token.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/tokenize.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/tokenize.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/types.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/types.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/warnings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/warnings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/weakref.py" beforeDir="false" afterPath="$PROJECT_DIR$/../experiments/classifier/lib/python3.7/weakref.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/RepeatingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/RepeatingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/VoiceRecognitionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/VoiceRecognitionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/sandboxnu/annotator/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/sandboxnu/annotator/ExampleUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +71,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_29_x86" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -90,22 +89,24 @@
       </state>
     </system>
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="Annotator" />
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="91" column="41" lean-forward="true" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
+            <state relative-caret-position="525">
+              <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/AlarmReceiver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1404#1826#0" expanded="true" />
-                <element signature="e#1825#1826#0" expanded="true" />
-                <element signature="e#2486#2652#0" expanded="true" />
-                <element signature="e#2651#2652#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -114,57 +115,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="12" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/secrets.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/AlarmReceiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/RecordingUploader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="92" column="53" selection-start-line="92" selection-start-column="53" selection-end-line="92" selection-end-column="53" />
+            <state relative-caret-position="195">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-29/android/speech/RecognizerIntent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/RepeatingService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -173,30 +152,39 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/WakeableService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="206">
+              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="android-designer2" />
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/VoiceRecognitionListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+            <state relative-caret-position="341">
+              <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+        <entry file="file://$PROJECT_DIR$/app/src/test/java/com/sandboxnu/annotator/ExampleUnitTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="636">
+              <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
             </state>
           </provider>
         </entry>
@@ -211,6 +199,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -218,35 +211,107 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/AlarmReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/RecordingUploader.java" />
         <option value="$PROJECT_DIR$/app/keys.txt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/secrets.properties" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/RepeatingService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/VoiceRecognitionListener.java" />
+        <option value="$PROJECT_DIR$/app/src/test/java/com/sandboxnu/annotator/ExampleUnitTest.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="25" />
-    <option name="y" value="31" />
-    <option name="width" value="1880" />
-    <option name="height" value="2104" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="ProjectPane" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
-              <item name="Annotator" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="sandboxnu" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Annotator" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/sandbox/annotator/Annotator" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="sandboxnu" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="annotator" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -264,6 +329,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -277,7 +343,92 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android JUnit.ExampleUnitTest.testSaveCantSaveToSameFile">
+    <configuration name="ExampleUnitTest.testSaveCantSaveToSameFile" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sandboxnu.annotator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sandboxnu.annotator" />
+      <option name="MAIN_CLASS_NAME" value="com.sandboxnu.annotator.ExampleUnitTest" />
+      <option name="METHOD_NAME" value="testSaveCantSaveToSameFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExampleUnitTest.testSaveCorrectly" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sandboxnu.annotator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sandboxnu.annotator" />
+      <option name="MAIN_CLASS_NAME" value="com.sandboxnu.annotator.ExampleUnitTest" />
+      <option name="METHOD_NAME" value="testSaveCorrectly" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExampleUnitTest.testSaveTest1" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sandboxnu.annotator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sandboxnu.annotator" />
+      <option name="MAIN_CLASS_NAME" value="com.sandboxnu.annotator.ExampleUnitTest" />
+      <option name="METHOD_NAME" value="testSaveTest1" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExampleUnitTest.testSaveTest2" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sandboxnu.annotator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sandboxnu.annotator" />
+      <option name="MAIN_CLASS_NAME" value="com.sandboxnu.annotator.ExampleUnitTest" />
+      <option name="METHOD_NAME" value="testSaveTest2" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExampleUnitTest.testSaveTestFail" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sandboxnu.annotator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sandboxnu.annotator" />
+      <option name="MAIN_CLASS_NAME" value="com.sandboxnu.annotator.ExampleUnitTest" />
+      <option name="METHOD_NAME" value="testSaveTestFail" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -338,19 +489,60 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android JUnit.ExampleUnitTest.testSaveCantSaveToSameFile" />
+        <item itemvalue="Android JUnit.ExampleUnitTest.testSaveTestFail" />
+        <item itemvalue="Android JUnit.ExampleUnitTest.testSaveTest1" />
+        <item itemvalue="Android JUnit.ExampleUnitTest.testSaveTest2" />
+        <item itemvalue="Android JUnit.ExampleUnitTest.testSaveCorrectly" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8dedb7f7-681e-4f15-9a5b-3b07f1215991" name="Default Changelist" comment="" />
+      <changelist id="45518d34-c1ff-4f5e-a1e6-0bedbf30b8fe" name="Default Changelist" comment="" />
       <created>1572190613041</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572190613041</updated>
     </task>
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="ExampleUnitTest_testSaveCorrectly - 2019.12.03 at 10h 16m 13s.xml">
+      <configuration name="ExampleUnitTest.testSaveCorrectly" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest_testSaveCorrectly - 2019.12.03 at 10h 16m 49s.xml">
+      <configuration name="ExampleUnitTest.testSaveCorrectly" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest_testSaveCorrectly - 2019.12.03 at 10h 19m 51s.xml">
+      <configuration name="ExampleUnitTest.testSaveCorrectly" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest_testSaveCorrectly - 2019.12.03 at 10h 20m 31s.xml">
+      <configuration name="ExampleUnitTest.testSaveCorrectly" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest_testSaveCorrectly - 2019.12.03 at 10h 21m 07s.xml">
+      <configuration name="ExampleUnitTest.testSaveCorrectly" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest_testSaveCorrectly - 2019.12.03 at 10h 22m 16s.xml">
+      <configuration name="ExampleUnitTest.testSaveCorrectly" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest_testSaveTest2 - 2019.12.03 at 10h 24m 03s.xml">
+      <configuration name="ExampleUnitTest.testSaveTest2" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest_testSaveTest1 - 2019.12.03 at 10h 24m 10s.xml">
+      <configuration name="ExampleUnitTest.testSaveTest1" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest_testSaveTestFail - 2019.12.03 at 10h 24m 49s.xml">
+      <configuration name="ExampleUnitTest.testSaveTestFail" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest_testSaveCantSaveToSameFile - 2019.12.03 at 10h 25m 48s.xml">
+      <configuration name="ExampleUnitTest.testSaveCantSaveToSameFile" configurationId="AndroidJUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -362,11 +554,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1549" height="877" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.90593046" visible="true" weight="0.1898055" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.90593046" visible="true" weight="0.3769671" />
       <window_info id="Structure" order="2" sideWeight="0.5008157" side_tool="true" weight="0.24441965" />
       <window_info id="Favorites" order="3" sideWeight="0.5008157" side_tool="true" weight="0.24441965" />
       <window_info id="Build Variants" order="4" sideWeight="0.061579652" side_tool="true" weight="0.1898055" />
@@ -374,15 +565,15 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49785408" weight="0.32891566" />
       <window_info anchor="bottom" id="Logcat" order="1" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.3296" />
       <window_info anchor="bottom" id="Debug" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49944195" weight="0.3296" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.501006" side_tool="true" weight="0.34538153" />
-      <window_info anchor="bottom" id="Version Control" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49899396" visible="true" weight="0.34538153" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="4" sideWeight="0.49713877" visible="true" weight="0.31084338" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5028612" side_tool="true" visible="true" weight="0.31084338" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.3299363" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.6988555" weight="0.34457833" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -417,19 +608,32 @@
       <window_info anchor="right" id="Palette&#9;" order="4" />
     </layout-to-restore>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="confidence level" />
+    <option name="LAST_COMMIT_MESSAGE" value="confidence level" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/WakeableService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -437,21 +641,8 @@
     <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/gradle.properties">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/RecordingUploader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="92" column="53" selection-start-line="92" selection-start-column="53" selection-end-line="92" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/secrets.properties">
       <provider selected="true" editor-type-id="text-editor">
@@ -460,10 +651,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/AlarmReceiver.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/media/ToneGenerator.java" />
+    <entry file="file://$PROJECT_DIR$/secrets.properties" />
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+        <state relative-caret-position="105">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/VoiceActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -472,43 +679,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="91" column="41" lean-forward="true" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1404#1826#0" expanded="true" />
-            <element signature="e#1825#1826#0" expanded="true" />
-            <element signature="e#2486#2652#0" expanded="true" />
-            <element signature="e#2651#2652#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="525">
+          <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/AlarmReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        <state relative-caret-position="120">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="12" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/media/ToneGenerator.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/RecordingUploader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12852">
-          <caret line="772" column="39" selection-start-line="772" selection-start-column="38" selection-end-line="772" selection-end-column="39" />
+        <state relative-caret-position="195">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/secrets.properties">
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-29/android/speech/RecognizerIntent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="135">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/RepeatingService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/WakeableService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/com/sandboxnu/annotator/ExampleUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sandboxnu/annotator/VoiceRecognitionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

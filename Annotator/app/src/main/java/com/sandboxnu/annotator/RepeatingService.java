@@ -26,9 +26,9 @@ public class RepeatingService extends Service
 
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         speechRecognizer.setRecognitionListener(new VoiceRecognitionListener(new ListenForVoice()));
-        screenLock = ((PowerManager)getSystemService(POWER_SERVICE)).newWakeLock(
-                PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "annotator:keepRunning");
-        screenLock.acquire();
+       // screenLock = ((PowerManager)getSystemService(POWER_SERVICE)).newWakeLock(
+       //         PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "annotator:keepRunning");
+       // screenLock.acquire();
         mHandler = new Handler();
         runnable = new Runnable() {
             @Override
