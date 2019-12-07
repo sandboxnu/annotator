@@ -79,6 +79,7 @@ public class VoiceRecognitionListener implements RecognitionListener {
         }
         // gets the confidence scores
         float[] confidence = results.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
+
         // filter the str
         String result = this.speechResult(this.data, confidence);
         if (result.equals("")) {
@@ -100,29 +101,36 @@ public class VoiceRecognitionListener implements RecognitionListener {
      */
     public String speechResult(List<String> array, float[] confidence) {
         // if string not found, call listen for voice again
-        if (!hasValidInput(array) || confidence == null) {
+
+        // ignore confidence for now - returns first match
+
+        if (!hasValidInput(array)) {
             return "";
         }
 
         // filters the results to just the ones in the dictionary
         // of the matches, we return the result that yields the highest confidence
         // level
-        double maxConfidence = 0.0;
-        int maxIndex = 0;
+        //double maxConfidence = 0.0;
+        //int maxIndex = 0;
+        String res = "";
         for (int i = 0; i < array.size(); i++) {
             // if in dictionary
-            if (MainActivity.dataSet.contains(array.get(i))) {
+            res = array.get(i);
+            if (MainActivity.dataSet.contains(res)) {
+                save(res);
+                return res;
+                        //+ "with the confidence level of: " + maxConfidence;
+
                 // if greater confidence
-                if (confidence[i] > maxConfidence) {
-                    maxConfidence = confidence[i];
-                    maxIndex = i;
-                }
+                //if (confidence[i] > maxConfidence) {
+                   // maxConfidence = confidence[i];
+                    //maxIndex = i;
+                //}
 
             }
         }
-
-        save(array.get(maxIndex));
-        return array.get(maxIndex) + "with the confidence level of: " + maxConfidence;
+        return res;
     }
 
     // saves the label to file
