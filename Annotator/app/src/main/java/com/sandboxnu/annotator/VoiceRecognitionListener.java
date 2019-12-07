@@ -78,7 +78,7 @@ public class VoiceRecognitionListener implements RecognitionListener {
             str += data.get(i);
         }
         // gets the confidence scores
-       ArrayList<String> confidence = results.getStringArrayList(SpeechRecognizer.CONFIDENCE_SCORES);
+       float[] confidence = results.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES);
 
         //float[] confidence = results.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
 
@@ -101,7 +101,7 @@ public class VoiceRecognitionListener implements RecognitionListener {
      * returns the first one that match (for now)
      * @param array
      */
-    public String speechResult(List<String> array, List<String> confidence) {
+    public String speechResult(List<String> array, float[] confidence) {
         // if string not found, call listen for voice again
 
         if (!hasValidInput(array) || confidence == null) {
@@ -112,7 +112,6 @@ public class VoiceRecognitionListener implements RecognitionListener {
         // of the matches, we return the result that yields the highest confidence
         // level
         double maxConfidence = 0.0;
-        double currConfidence = 0;
         int maxIndex = 0;
         for (int i = 0; i < array.size(); i++) {
             // if in dictionary
@@ -120,9 +119,8 @@ public class VoiceRecognitionListener implements RecognitionListener {
 
 
                 // if greater confidence
-                currConfidence = Double.parseDouble(confidence.get(i));
-                if (currConfidence > maxConfidence) {
-                    maxConfidence = currConfidence;
+                if (confidence[i] > maxConfidence) {
+                    maxConfidence = confidence[i];
                     maxIndex = i;
                 }
 
