@@ -78,9 +78,9 @@ public class RepeatingService extends Service
         speechRecognizer.startListening(intent);
     }
 
-    public static class ListenForVoice {
+    class ListenForVoice {
         void apply() {
-            new RepeatingService().listenForVoice();
+            RepeatingService.this.listenForVoice();
         }
     }
 }

@@ -77,8 +77,10 @@ public class ExampleUnitTest {
         arr[2] = 0.564f;
         arr[3] = 0.209f;
 
+        RepeatingService.ListenForVoice funcObj = new RepeatingService().new ListenForVoice();
         assertEquals("eating with a confidence level of 0.991",
-                new VoiceRecognitionListener(new RepeatingService.ListenForVoice()).speechResult(list,arr));
+
+                new VoiceRecognitionListener(funcObj).speechResult(list,arr));
         String home = System.getProperty("user.home");
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
         String date = dateFormat.format(new Date());
@@ -99,9 +101,10 @@ public class ExampleUnitTest {
         arr[1] = 0.997f;
         arr[2] = 0.564f;
         arr[3] = 0.209f;
+        RepeatingService.ListenForVoice funcObj = new RepeatingService().new ListenForVoice();
 
         assertEquals("swimming with a confidence level of 0.809",
-                new VoiceRecognitionListener(new RepeatingService.ListenForVoice()).speechResult(list,arr));
+                new VoiceRecognitionListener(funcObj).speechResult(list,arr));
         String home = System.getProperty("user.home");
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
         String date = dateFormat.format(new Date());
@@ -123,7 +126,8 @@ public class ExampleUnitTest {
         arr[1] = 0.997f;
         arr[2] = 0.564f;
         arr[3] = 0.209f;
-        new VoiceRecognitionListener(new RepeatingService.ListenForVoice()).speechResult(list,arr);
+        RepeatingService.ListenForVoice funcObj = new RepeatingService().new ListenForVoice();
+        new VoiceRecognitionListener(funcObj).speechResult(list,arr);
 
     }
 
