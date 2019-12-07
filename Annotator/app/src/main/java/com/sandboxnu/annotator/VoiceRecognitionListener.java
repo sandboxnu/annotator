@@ -78,7 +78,9 @@ public class VoiceRecognitionListener implements RecognitionListener {
             str += data.get(i);
         }
         // gets the confidence scores
-        float[] confidence = results.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
+       ArrayList<String> confidence = results.getStringArrayList(SpeechRecognizer.CONFIDENCE_SCORES);
+
+        //float[] confidence = results.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
 
         // filter the str
         String result = this.speechResult(this.data, confidence);
@@ -99,38 +101,36 @@ public class VoiceRecognitionListener implements RecognitionListener {
      * returns the first one that match (for now)
      * @param array
      */
-    public String speechResult(List<String> array, float[] confidence) {
+    public String speechResult(List<String> array, List<String> confidence) {
         // if string not found, call listen for voice again
 
-        // ignore confidence for now - returns first match
-
-        if (!hasValidInput(array)) {
+        if (!hasValidInput(array) || confidence == null) {
             return "";
         }
 
         // filters the results to just the ones in the dictionary
         // of the matches, we return the result that yields the highest confidence
         // level
-        //double maxConfidence = 0.0;
-        //int maxIndex = 0;
-        String res = "";
+        double maxConfidence = 0.0;
+        double currConfidence = 0;
+        int maxIndex = 0;
         for (int i = 0; i < array.size(); i++) {
             // if in dictionary
-            res = array.get(i);
-            if (MainActivity.dataSet.contains(res)) {
-                save(res);
-                return res;
-                        //+ "with the confidence level of: " + maxConfidence;
+            if (MainActivity.dataSet.contains(array.get(i))) {
+
 
                 // if greater confidence
-                //if (confidence[i] > maxConfidence) {
-                   // maxConfidence = confidence[i];
-                    //maxIndex = i;
-                //}
+                currConfidence = Double.parseDouble(confidence.get(i));
+                if (currConfidence > maxConfidence) {
+                    maxConfidence = currConfidence;
+                    maxIndex = i;
+                }
 
             }
         }
-        return res;
+
+        save(array.get(maxIndex));
+        return array.get(maxIndex) + "with the confidence level of: " + maxConfidence;
     }
 
     // saves the label to file
