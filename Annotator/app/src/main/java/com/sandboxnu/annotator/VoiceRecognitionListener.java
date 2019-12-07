@@ -6,6 +6,7 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.Voice;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,6 +23,7 @@ import java.util.Date;
 public class VoiceRecognitionListener implements RecognitionListener {
     private List<String> data = new ArrayList();
     private RepeatingService.ListenForVoice func;
+    private RepeatingService service;
 
     /**
      * A constructor that takes in a function object ListenForVoice that will listen for voice
@@ -30,8 +32,9 @@ public class VoiceRecognitionListener implements RecognitionListener {
      * @param func - the function object
      */
 
-    public VoiceRecognitionListener(RepeatingService.ListenForVoice func) {
+    public VoiceRecognitionListener(RepeatingService.ListenForVoice func, RepeatingService service) {
         this.func = func;
+        this.service = service;
     }
 
 
@@ -78,10 +81,15 @@ public class VoiceRecognitionListener implements RecognitionListener {
         float[] confidence = results.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
         // filter the str
         String result = this.speechResult(this.data, confidence);
-        Log.d("VoiceRecognition", "result: " + str);
-        Log.d("VoiceRecognition", "filter result: " + result);
-
-
+        if (result.equals("")) {
+            Toast.makeText(service, "Couldn't recognize an activity. Trying again...", Toast.LENGTH_LONG).show();
+            func.apply();
+        }
+        else {
+            Toast.makeText(service, "filter result: " + result, Toast.LENGTH_LONG).show();
+            Log.d("VoiceRecognition", "result: " + str);
+            Log.d("VoiceRecognition", "filter result: " + result);
+        }
     }
 
     /**
@@ -92,8 +100,8 @@ public class VoiceRecognitionListener implements RecognitionListener {
      */
     public String speechResult(List<String> array, float[] confidence) {
         // if string not found, call listen for voice again
-        while (!hasValidInput(array)) {
-            func.apply();
+        if (!hasValidInput(array) || confidence == null) {
+            return "";
         }
 
         // filters the results to just the ones in the dictionary

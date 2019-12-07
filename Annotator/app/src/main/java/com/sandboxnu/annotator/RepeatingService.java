@@ -25,7 +25,7 @@ public class RepeatingService extends Service
     {
 
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        speechRecognizer.setRecognitionListener(new VoiceRecognitionListener(new ListenForVoice()));
+        speechRecognizer.setRecognitionListener(new VoiceRecognitionListener(new ListenForVoice(), this));
         powerManager = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Annotator:Lock");
         wakeLock.acquire();
@@ -36,7 +36,6 @@ public class RepeatingService extends Service
                 generateTone();
                 Log.d("VoiceRecognition", "Listening!");
                 listenForVoice();
-
                 mHandler.postDelayed(this, delay);
             }
         };
@@ -71,6 +70,7 @@ public class RepeatingService extends Service
     }
 
     private void listenForVoice() {
+        Toast.makeText(this, "Listening for voice...", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
