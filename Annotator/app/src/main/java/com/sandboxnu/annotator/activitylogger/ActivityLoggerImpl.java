@@ -26,15 +26,18 @@ public class ActivityLoggerImpl implements ActivityLogger {
     private SensorEventListener listener;
     private ArrayList<String> timestamps;
     private Context ctx;
+    private String initialDate;
 
     private void initializeLogs() {
         this.logData = new ArrayList<>(Arrays.asList(new ArrayList<Float>(), new ArrayList<Float>(), new ArrayList<Float>()));
         this.timestamps = new ArrayList<>();
         this.logFileName = null;
+        this.initialDate = getReadableDate();
     }
 
 
     public ActivityLoggerImpl(SensorManager sensorManager, Context ctx) {
+        this.ctx = ctx;
         this.initializeLogs();
         this.sensorManager = sensorManager;
         listener = new SensorEventListener() {
@@ -67,7 +70,7 @@ public class ActivityLoggerImpl implements ActivityLogger {
         sensorManager.unregisterListener(this.listener);
         String fileName = this.logFileName;
         if (fileName == null) {
-            fileName = StringUtils.getAlphaNumericString(12);
+            fileName = this.initialDate + "_to_" + getReadableDate() + ".csv";
         }
 
         StringBuilder fileContents = new StringBuilder("TS,X,Y,Z\n");
@@ -111,5 +114,11 @@ public class ActivityLoggerImpl implements ActivityLogger {
         } catch (FileNotFoundException e) {
             return null;
         }
+    }
+
+    private String getReadableDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy_HH:mm:ss");
+        String date = dateFormat.format(new Date());
+        return date;
     }
 }

@@ -1,5 +1,6 @@
 package com.sandboxnu.annotator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -7,6 +8,8 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.Voice;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -149,6 +152,8 @@ public class VoiceRecognitionListener implements RecognitionListener {
                 printWriter = new PrintWriter(file);
                 printWriter.append(label);
                 printWriter.close();
+                Intent intent = new Intent("refresh-view");
+                service.sendBroadcast(intent);
             } catch (FileNotFoundException fne) {
                 System.out.println("file not found or could not be created!");
             }

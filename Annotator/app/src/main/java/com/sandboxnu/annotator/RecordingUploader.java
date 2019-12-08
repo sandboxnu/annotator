@@ -34,12 +34,7 @@ class RecordingUploader {
     }
 
     // Instantiates a reference to the s3 client with the locally stored credentials.
-    private final AmazonS3 s3Client = new AmazonS3Client(
-            new BasicAWSCredentials(
-                    BuildConfig.AWS_PUB,
-                    BuildConfig.AWS_SECRET
-            )
-    );
+    private AmazonS3 s3Client = null;
 
     /**
      * Uploads all of the files stored locally to an S3 bucket,
@@ -65,6 +60,26 @@ class RecordingUploader {
         }
     }
 
+    void removeAll() {
+        try {
+
+            // obtain all of the files
+            File[] listOfFiles = this.app.getFilesDir().listFiles();
+
+            if (listOfFiles == null) {
+                throw new IllegalArgumentException("There are no files to send.");
+            } else {
+                for (final File file : listOfFiles) {
+                    removeFile(file);
+                }
+            }
+
+        } catch (Exception e) {
+            // if the file could not be uploaded, throw an exception
+            throw new IllegalStateException("Unable to access the files in the directory.");
+        }
+    }
+
     /**
      * Upload a series of files to an S3 bucket.
      * Better than uploading a single file, as it requires only a single S3 connection.
@@ -72,6 +87,14 @@ class RecordingUploader {
      * @param files the files to upload to S3.
      */
     private void uploadFilesS3(File[] files) {
+        if(s3Client == null) {
+            s3Client = new AmazonS3Client(
+                    new BasicAWSCredentials(
+                            BuildConfig.AWS_PUB,
+                            BuildConfig.AWS_SECRET
+                    )
+            );
+        }
 
         // construct the transfer utility with the s3 client
         TransferUtility tfUtility =
