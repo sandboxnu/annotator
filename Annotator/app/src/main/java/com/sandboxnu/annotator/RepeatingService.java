@@ -20,7 +20,7 @@ public class RepeatingService extends Service
     Handler mHandler;
     Runnable runnable;
     SpeechRecognizer speechRecognizer;
-    static int delay = 10000;
+    static int delay = 15000;
     public void onCreate()
     {
 

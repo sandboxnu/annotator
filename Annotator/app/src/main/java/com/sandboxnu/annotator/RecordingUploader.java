@@ -41,42 +41,28 @@ class RecordingUploader {
      * then deletes the local copies of the files.
      */
     void uploadAll() {
-        System.out.println("Uploading files to S3...");
-        try {
-
             // obtain all of the files
-            File[] listOfFiles = this.app.getFilesDir().listFiles();
+        File[] listOfFiles = this.app.getFilesDir().listFiles();
 
-            if (listOfFiles == null) {
-                throw new IllegalArgumentException("There are no files to send.");
-            } else {
-                // upload all of the files
-                uploadFilesS3(listOfFiles);
-            }
-
-        } catch (Exception e) {
-            // if the file could not be uploaded, throw an exception
-            throw new IllegalStateException("Unable to access the files in the directory.");
+        if (listOfFiles == null) {
+            throw new IllegalArgumentException("There are no files to send.");
+        } else {
+            // upload all of the files
+            uploadFilesS3(listOfFiles);
         }
+
     }
 
     void removeAll() {
-        try {
+        // obtain all of the files
+        File[] listOfFiles = this.app.getFilesDir().listFiles();
 
-            // obtain all of the files
-            File[] listOfFiles = this.app.getFilesDir().listFiles();
-
-            if (listOfFiles == null) {
-                throw new IllegalArgumentException("There are no files to send.");
-            } else {
-                for (final File file : listOfFiles) {
-                    removeFile(file);
-                }
+        if (listOfFiles == null) {
+            throw new IllegalArgumentException("There are no files to send.");
+        } else {
+            for (final File file : listOfFiles) {
+                removeFile(file);
             }
-
-        } catch (Exception e) {
-            // if the file could not be uploaded, throw an exception
-            throw new IllegalStateException("Unable to access the files in the directory.");
         }
     }
 
@@ -122,6 +108,7 @@ class RecordingUploader {
                     System.out.println(state);
                     if (TransferState.COMPLETED == state) {
                         removeFile(file);
+                        app.refreshRecordingsView();
                     }
                 }
 

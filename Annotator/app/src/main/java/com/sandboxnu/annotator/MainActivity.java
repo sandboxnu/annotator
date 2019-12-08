@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             // add the aws mobile client!
-        //AWSMobileClient.getInstance().initialize(this).execute();
+        AWSMobileClient.getInstance().initialize(this).execute();
 
         // create the upload button, and upload files to s3 when it is clicked
         Button upload = findViewById(R.id.upload);
@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
             RecordingUploader uploader = new RecordingUploader(ref);
             // onclick action to upload all of the local files
             public void onClick(View v) {
-                //this.uploader.uploadAll();
-                this.uploader.removeAll();
+                this.uploader.uploadAll();
+                //this.uploader.removeAll();
                 refreshRecordingsView();
             }
         });

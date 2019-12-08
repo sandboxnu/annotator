@@ -49,7 +49,7 @@ public class ActivityLoggerImpl implements ActivityLogger {
             public void onSensorChanged(SensorEvent event) {
                 // Get timestamp
                 TimeZone tz = TimeZone.getTimeZone("UTC");
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss.SSS"); // Quoted "Z" to indicate UTC, no timezone offset
                 df.setTimeZone(tz);
                 String nowAsISO = df.format(new Date());
                 timestamps.add(nowAsISO);

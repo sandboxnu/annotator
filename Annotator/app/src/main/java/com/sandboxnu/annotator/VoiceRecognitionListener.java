@@ -92,7 +92,7 @@ public class VoiceRecognitionListener implements RecognitionListener {
             func.apply();
         }
         else {
-            Toast.makeText(service, "filter result: " + result, Toast.LENGTH_LONG).show();
+            Toast.makeText(service, result, Toast.LENGTH_LONG).show();
             Log.d("VoiceRecognition", "result: " + str);
             Log.d("VoiceRecognition", "filter result: " + result);
         }
@@ -131,7 +131,7 @@ public class VoiceRecognitionListener implements RecognitionListener {
         }
 
         save(array.get(maxIndex));
-        return array.get(maxIndex) + "with the confidence level of: " + maxConfidence;
+        return array.get(maxIndex) + " detected with " + (int) (maxConfidence * 100) + "% confidence";
     }
 
     // saves the label to file
